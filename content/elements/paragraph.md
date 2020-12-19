@@ -2,5 +2,5 @@
 name: Paragraph
 content:
   lang: jsx
-  code: <p>Mein Paragraph</p>
+  code: <p className="text-gray-500">{paragraphText}</p>
 ---
