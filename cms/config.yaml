@@ -1,0 +1,353 @@
+cms_manual_init: true
+backend:
+    name: github
+    repo: tobkle/template-next-tailwind-headlessui
+    branch: main
+    squash_merges: true
+locale: de
+media_folder: /public/img
+public_folder: /img
+slug:
+    encoding: "ascii"
+    clean_accents: true
+    sanitize_replacement: "_"
+collections:
+    - name: settings
+      label: Settings
+      description: Maintain Settings here
+      files:
+          - name: settings
+            label: Settings
+            file: /content/settings/settings.md
+            preview: false
+            fields:
+                - name: site_title
+                  label: Site Name
+                  widget: string
+                - name: base_url
+                  label: Base Url
+                  widget: string
+    - name: elements
+      label: Elements
+      label_singular: Element
+      description: Maintain Elements here
+      folder: /content/elements
+      extension: md
+      format: frontmatter
+      create: true
+      delete: true
+      identifier_field: slug
+      slug: "{{fields.name}}"
+      summary: "{{fields.name}}"
+      fields:
+          - name: name
+            label: Name
+            widget: string
+          - name: content
+            label: Content
+            widget: code
+            allow_language_selection: true
+    - name: sections
+      label: Sections
+      label_singular: Section
+      description: Maintain Sections here
+      folder: /content/sections
+      extension: md
+      format: frontmatter
+      create: true
+      delete: true
+      identifier_field: slug
+      slug: "{{fields.name}}"
+      summary: "{{fields.name}}"
+      fields:
+          - name: name
+            label: Name
+            widget: string
+          - name: rows
+            label: Rows
+            label_singular: Row
+            widget: list
+            field:
+                name: columns
+                label: Columns
+                label_singular: Column
+                widget: list
+                field:
+                    name: blocks
+                    label: Blocks
+                    label_singular: Block
+                    widget: list
+                    field:
+                        name: elements
+                        label: Element
+                        label_singular: Element
+                        widget: relation
+                        collection: "elements"
+                        value_field: "name"
+                        search_fields: ["name", "content"]
+                        display_fields: ["name"]
+    - name: pages
+      label: Pages
+      label_singular: Pages
+      description: Maintain Pages here
+      folder: /content/pages
+      extension: md
+      format: frontmatter
+      create: true
+      delete: true
+      identifier_field: slug
+      slug: "{{slug}}"
+      summary: "{{slug}}"
+      fields:
+          - name: slug
+            label: Slug
+            widget: string
+          - name: title
+            label: Title
+            widget: string
+          - name: sections
+            label: Sections
+            label_singular: Section
+            widget: list
+            allow_add: true
+            collapsed: false
+            fields:
+                - name: section
+                  label: Section
+                  widget: relation
+                  collection: sections
+                  value_field: "name"
+                  search_fields: ["name"]
+                  display_fields: ["name"]
+          - name: published
+            label: published
+            required: false
+            widget: boolean
+            hint: ""
+            default: true
+          - name: date_from
+            label: published from date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            picker_utc: false
+    - name: menu
+      label: └Menu
+      label_singular: Menu
+      description: Maintain Site Navigation
+      files:
+          - name: menues
+            label: Menu
+            label_singular: Menu
+            file: content/menu/menu.md
+            fields:
+                - label: Menu
+                  label_singular: Menu
+                  name: menues
+                  widget: list
+                  fields:
+                      - label: Title
+                        name: name
+                        widget: string
+                      - label: Url
+                        name: slug
+                        widget: string
+                      - label: image
+                        name: image
+                        widget: image
+    - name: posts
+      label: Posts
+      label_singular: Post
+      description: Maintain Posts here
+      folder: /content/posts
+      extension: md
+      format: frontmatter
+      create: true
+      delete: true
+      slug: "{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}-{{author}}"
+      identifier_field: slug
+      summary: "{{title}}"
+      fields:
+          - label: Title
+            name: Titel
+            widget: string
+            required: true
+            hint: ""
+            default: ""
+          - label: Content
+            name: body
+            widget: markdown
+          - label: Excerpt
+            name: excerpt
+            widget: markdown
+          - name: published
+            label: published
+            required: false
+            widget: boolean
+            hint: ""
+            default: true
+          - name: date_from
+            label: published from date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            picker_utc: false
+          - name: date_to
+            label: published to date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            default: "December 31, 2030 12:00 AM"
+            picker_utc: false
+          - name: author
+            label: Autor
+            widget: relation
+            collection: author
+            search_fields:
+                - name
+            display_fields:
+                - name
+            value_field: name
+            required: true
+            hint: ""
+            multiple: true
+            options_length: 20
+          - name: tags
+            label: Tags
+            widget: relation
+            collection: tag
+            search_fields:
+                - tag
+            display_fields:
+                - tag
+            value_field: tag
+            required: true
+            hint: ""
+            multiple: true
+            options_length: 20
+    - name: author
+      label: └Authors
+      label_singular: Author
+      description: Authors of a Post
+      folder: /content/authors
+      create: true
+      delete: false
+      editor:
+          preview: false
+      slug: "{{fields.name}}"
+      fields:
+          - name: name
+            label: Name
+            widget: string
+            required: true
+          - name: slug
+            label: Url
+            widget: string
+            required: true
+          - name: picture
+            label: Author Image used as Avatar
+            widget: image
+            required: false
+          - name: description
+            label: Description
+            widget: string
+            required: false
+    - name: tag
+      label: └Tags
+      label_singular: Tags
+      description: Tags to collect Posts in Categories
+      folder: /content/tags
+      slug: "{{fields.tag}}"
+      create: true
+      delete: false
+      editor:
+          preview: false
+      fields:
+          - name: tag
+            label: Tag
+            widget: string
+            required: true
+    - name: calendars
+      label: Calendars
+      label_singular: Event
+      description: Event Calendar
+      folder: /content/calendars
+      slug: "{{fields.calendar}}"
+      summary: "{{fields.calendar}}"
+      create: true
+      delete: true
+      editor:
+          preview: false
+      fields:
+          - label: Calendar
+            name: calendar
+            widget: number
+            required: true
+          - name: dates
+            label: Events
+            label_singular: Event
+            widget: list
+            collapsed: true
+            summary: "{{fields.date}} - {{fields.event}} - {{fields.group}}"
+            allow_add: true
+            fields:
+                - name: entry
+                  label: Event
+                  widget: datetime
+                  format: DD.MM.YYYY
+                  date_format: DD.MM.YYYY
+                  time_format: HH:mm
+                  required: true
+                  hint: ""
+                  default: ""
+                  picker_utc: false
+                - name: event
+                  label: Event Description
+                  widget: string
+                  required: false
+                - name: group
+                  label: Group of Events
+                  widget: relation
+                  collection: group
+                  search_fields:
+                      - name
+                  display_fields:
+                      - name
+                  value_field: name
+                  required: true
+                  hint: ""
+                  default: ""
+                  multiple: true
+                  options_length: 20
+    - name: group
+      label: └Groups
+      label_singular: Group
+      description: Maintain Event Groups to categorize Events
+      folder: /content/groups
+      create: true
+      delete: false
+      editor:
+          preview: false
+      slug: "{{fields.name}}"
+      fields:
+          - name: name
+            label: Name
+            widget: string
+            required: true
+          - name: slug
+            label: Url
+            widget: string
+            required: true
+          - name: description
+            label: Group Description
+            widget: string
+            required: false

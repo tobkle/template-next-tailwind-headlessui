@@ -1,15 +1,30 @@
 {
-  "name": "a01",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "10.0.3",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
-  }
+    "name": "a01",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 4000",
+        "build": "next build",
+        "start": "next start"
+    },
+    "dependencies": {
+        "@headlessui/react": "^0.2.0",
+        "date-fns": "^2.16.1",
+        "js-cookie": "^2.2.1",
+        "netlify-cms-app": "^2.14.6",
+        "netlify-cms-locales": "^1.21.0",
+        "next": "10.0.3",
+        "react": "17.0.1",
+        "react-dom": "17.0.1"
+    },
+    "devDependencies": {
+        "@tailwindcss/typography": "^0.3.1",
+        "autoprefixer": "^10.1.0",
+        "gray-matter": "^4.0.2",
+        "next-compose-plugins": "^2.2.1",
+        "next-plugin-yaml": "^1.0.1",
+        "postcss": "^8.2.1",
+        "prop-types": "^15.7.2",
+        "tailwindcss": "^2.0.2"
+    }
 }
