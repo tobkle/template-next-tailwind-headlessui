@@ -64,7 +64,7 @@ collections:
       create: true
       delete: true
       identifier_field: slug
-      slug: "{{fields.name}}"
+      slug: "{{slug}}"
       summary: "{{fields.name}}"
       fields:
           - name: name
@@ -85,7 +85,7 @@ collections:
       create: true
       delete: true
       identifier_field: slug
-      slug: "{{fields.name}}"
+      slug: "{{slug}}"
       summary: "{{fields.name}}"
       fields:
           - name: name
@@ -111,7 +111,7 @@ collections:
                         label_singular: Element
                         widget: relation
                         collection: "elements"
-                        value_field: "name"
+                        value_field: "slug"
                         search_fields: ["name", "content"]
                         display_fields: ["name"]
 
@@ -145,7 +145,7 @@ collections:
                   label: Section
                   widget: relation
                   collection: sections
-                  value_field: "name"
+                  value_field: "slug"
                   search_fields: ["name"]
                   display_fields: ["name"]
           - name: published
