@@ -7,6 +7,7 @@ backend:
 locale: de
 media_folder: /public/img
 public_folder: /img
+publish_mode: editorial_workflow
 slug:
     encoding: "ascii"
     clean_accents: true
@@ -15,9 +16,12 @@ collections:
     - name: settings
       label: Settings
       description: Maintain Settings here
+      delete: false
+      editor:
+          preview: false
       files:
-          - name: settings
-            label: Settings
+          - name: general
+            label: Site Settings
             file: /content/settings/settings.md
             preview: false
             fields:
@@ -27,6 +31,29 @@ collections:
                 - name: base_url
                   label: Base Url
                   widget: string
+                - name: posts
+                  label: Post Settings
+                  widget: object
+                  fields:
+                      - name: front_limit
+                        label: Number of posts on frontpage
+                        widget: number
+                        min: 1
+                        max: 10
+                      - name: author
+                        label: Author
+                        widget: relation
+                        collection: author
+                        search_fields:
+                            - name
+                        display_fields:
+                            - name
+                        value_field: name
+                        required: true
+                        hint: ""
+                        multiple: true
+                        options_length: 20
+
     - name: elements
       label: Elements
       label_singular: Element
@@ -47,6 +74,7 @@ collections:
             label: Content
             widget: code
             allow_language_selection: true
+
     - name: sections
       label: Sections
       label_singular: Section
@@ -86,6 +114,7 @@ collections:
                         value_field: "name"
                         search_fields: ["name", "content"]
                         display_fields: ["name"]
+
     - name: pages
       label: Pages
       label_singular: Pages
@@ -134,6 +163,7 @@ collections:
             required: true
             hint: ""
             picker_utc: false
+
     - name: menu
       label: └Menu
       label_singular: Menu
@@ -158,6 +188,7 @@ collections:
                       - label: image
                         name: image
                         widget: image
+
     - name: posts
       label: Posts
       label_singular: Post
@@ -169,47 +200,41 @@ collections:
       delete: true
       slug: "{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}-{{author}}"
       identifier_field: slug
-      summary: "{{title}}"
+      summary: "{{year}}-{{month}}-{{day}} | {{title}}"
+      view_filters:
+          - label: Posts With Index
+            field: title
+            pattern: "This is post #"
+          - label: Posts Without Index
+            field: title
+            pattern: front matter post
+          - label: Drafts
+            field: draft
+            pattern: true
+      view_groups:
+          - label: Year
+            field: date
+            pattern: \d{4}
+          - label: Drafts
+            field: draft
       fields:
-          - label: Title
-            name: Titel
-            widget: string
-            required: true
-            hint: ""
-            default: ""
+          - { label: "Title", name: "title", widget: "string", tagname: "h1" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Cover Image"
+            name: "image"
+            widget: "image"
+            required: false
+            tagname: ""
           - label: Content
             name: body
             widget: markdown
+            hint: Main content goes here
           - label: Excerpt
             name: excerpt
             widget: markdown
-          - name: published
-            label: published
             required: false
-            widget: boolean
-            hint: ""
-            default: true
-          - name: date_from
-            label: published from date
-            widget: datetime
-            format: LLL
-            time_format: HH:mm
-            date_format: DD.MM.YYYY
-            required: true
-            hint: ""
-            picker_utc: false
-          - name: date_to
-            label: published to date
-            widget: datetime
-            format: LLL
-            time_format: HH:mm
-            date_format: DD.MM.YYYY
-            required: true
-            hint: ""
-            default: "December 31, 2030 12:00 AM"
-            picker_utc: false
           - name: author
-            label: Autor
+            label: Author
             widget: relation
             collection: author
             search_fields:
@@ -234,6 +259,32 @@ collections:
             hint: ""
             multiple: true
             options_length: 20
+          - name: published
+            label: published
+            required: false
+            widget: boolean
+            hint: ""
+            default: true
+          - name: date
+            label: published from date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            picker_utc: false
+          - name: date_to
+            label: published to date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            default: "December 31, 2030 12:00 AM"
+            picker_utc: false
+
     - name: author
       label: └Authors
       label_singular: Author
@@ -261,6 +312,7 @@ collections:
             label: Description
             widget: string
             required: false
+
     - name: tag
       label: └Tags
       label_singular: Tags
@@ -276,6 +328,7 @@ collections:
             label: Tag
             widget: string
             required: true
+
     - name: calendars
       label: Calendars
       label_singular: Event
@@ -328,6 +381,7 @@ collections:
                   default: ""
                   multiple: true
                   options_length: 20
+
     - name: group
       label: └Groups
       label_singular: Group
@@ -351,3 +405,16 @@ collections:
             label: Group Description
             widget: string
             required: false
+
+    - name: "faq" # Used in routes, ie.: /admin/collections/:slug/edit
+      label: "FAQ" # Used in the UI
+      folder: "faqs"
+      create: true # Allow users to create new documents in this collection
+      fields: # The fields each document in this collection have
+          - {
+                label: "Question",
+                name: "title",
+                widget: "string",
+                tagname: "h1",
+            }
+          - { label: "Answer", name: "body", widget: "markdown" }
