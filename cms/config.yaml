@@ -7,12 +7,13 @@ backend:
 locale: de
 media_folder: /public/img
 public_folder: /img
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 slug:
     encoding: "ascii"
     clean_accents: true
     sanitize_replacement: "_"
 collections:
+    #   S E T T I N G S -----------
     - name: settings
       label: Settings
       description: Maintain Settings here
@@ -54,6 +55,7 @@ collections:
                         multiple: true
                         options_length: 20
 
+    #   E L E M E N T S -----------
     - name: elements
       label: Elements
       label_singular: Element
@@ -64,7 +66,7 @@ collections:
       create: true
       delete: true
       identifier_field: slug
-      slug: "{{slug}}"
+      slug: "{{fields.name}}"
       summary: "{{fields.name}}"
       fields:
           - name: name
@@ -74,7 +76,9 @@ collections:
             label: Content
             widget: code
             allow_language_selection: true
+            default_language: jsx
 
+    #   S E C T I O N S -----------
     - name: sections
       label: Sections
       label_singular: Section
@@ -85,7 +89,7 @@ collections:
       create: true
       delete: true
       identifier_field: slug
-      slug: "{{slug}}"
+      slug: "{{fields.name}}"
       summary: "{{fields.name}}"
       fields:
           - name: name
@@ -95,26 +99,30 @@ collections:
             label: Rows
             label_singular: Row
             widget: list
+            collapsed: false
             field:
                 name: columns
                 label: Columns
                 label_singular: Column
                 widget: list
+                collapsed: false
                 field:
                     name: blocks
                     label: Blocks
                     label_singular: Block
                     widget: list
+                    collapsed: false
                     field:
                         name: elements
                         label: Element
                         label_singular: Element
                         widget: relation
                         collection: "elements"
-                        value_field: "slug"
+                        value_field: "{{slug}}"
                         search_fields: ["name", "content"]
                         display_fields: ["name"]
 
+    #   P A G E S -----------
     - name: pages
       label: Pages
       label_singular: Pages
@@ -145,7 +153,7 @@ collections:
                   label: Section
                   widget: relation
                   collection: sections
-                  value_field: "slug"
+                  value_field: "{{slug}}"
                   search_fields: ["name"]
                   display_fields: ["name"]
           - name: published
@@ -154,7 +162,7 @@ collections:
             widget: boolean
             hint: ""
             default: true
-          - name: date_from
+          - name: date
             label: published from date
             widget: datetime
             format: LLL
@@ -163,7 +171,18 @@ collections:
             required: true
             hint: ""
             picker_utc: false
+          - name: date_to
+            label: published to date
+            widget: datetime
+            format: LLL
+            time_format: HH:mm
+            date_format: DD.MM.YYYY
+            required: true
+            hint: ""
+            default: "December 31, 2030 12:00 AM"
+            picker_utc: false
 
+    #   M E N U  -----------
     - name: menu
       label: └Menu
       label_singular: Menu
@@ -188,7 +207,9 @@ collections:
                       - label: image
                         name: image
                         widget: image
+                        required: false
 
+    #   P O S T S  -----------
     - name: posts
       label: Posts
       label_singular: Post
@@ -285,6 +306,7 @@ collections:
             default: "December 31, 2030 12:00 AM"
             picker_utc: false
 
+    #   A U T H O R S  -----------
     - name: author
       label: └Authors
       label_singular: Author
@@ -313,6 +335,7 @@ collections:
             widget: string
             required: false
 
+    #   T A G S  -----------
     - name: tag
       label: └Tags
       label_singular: Tags
@@ -329,6 +352,7 @@ collections:
             widget: string
             required: true
 
+    #   C A L E N D A R S  -----------
     - name: calendars
       label: Calendars
       label_singular: Event
@@ -353,7 +377,7 @@ collections:
             summary: "{{fields.date}} - {{fields.event}} - {{fields.group}}"
             allow_add: true
             fields:
-                - name: entry
+                - name: date
                   label: Event
                   widget: datetime
                   format: DD.MM.YYYY
@@ -382,6 +406,7 @@ collections:
                   multiple: true
                   options_length: 20
 
+    #   G R O U P S  -----------
     - name: group
       label: └Groups
       label_singular: Group
@@ -406,6 +431,7 @@ collections:
             widget: string
             required: false
 
+    #   F A Q S  -----------
     - name: "faq" # Used in routes, ie.: /admin/collections/:slug/edit
       label: "FAQ" # Used in the UI
       folder: "faqs"

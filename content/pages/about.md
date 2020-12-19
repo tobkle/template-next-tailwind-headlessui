@@ -5,5 +5,5 @@ sections:
     - section: header-paragraph
     - section: header-paragraph
 published: true
-date_from: December 19, 2020 8:25 PM
+date: December 19, 2020 8:25 PM
 ---
