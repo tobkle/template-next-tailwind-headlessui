@@ -4,6 +4,7 @@ appmenu:
       - Adjustments
     label: Test
     slug: /test
-    iconname: AcademicCap
-    iconstyle: outline
+    iconname:
+      - ArrowDown
+    iconstyle: solid
 ---
