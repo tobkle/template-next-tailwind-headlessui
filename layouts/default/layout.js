@@ -5,6 +5,7 @@ import Footer from "./footer"
 
 export default function Layout({
     title = "",
+    menu = "",
     header = true,
     nav = true,
     logo = true,
@@ -20,8 +21,8 @@ export default function Layout({
                 <title>{title}</title>
             </Head>
 
-            <div className="relative flex flex-row flex-wrap h-screen">
-                {header && <Header nav={nav} logo={logo} />}
+            <div className="relative flex flex-col flex-wrap h-screen">
+                {header && <Header nav={nav} logo={logo} menu={menu} />}
 
                 {main && (
                     <Main aside={aside} article={article}>

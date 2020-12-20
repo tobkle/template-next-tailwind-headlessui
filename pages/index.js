@@ -74,7 +74,7 @@ export async function getStaticProps({ params }) {
     const getAll = require("lib/api").getAll
     const getBySlug = require("lib/api").getBySlug
     const menuType = "menu"
-    const menuFields = ["menues", "appmenues"]
+    const menuFields = ["menu", "appmenu"]
     const menu = getAll(menuType, menuFields)
     const entity = getBySlug(contentType, "home", contentTypeFields)
     return {
