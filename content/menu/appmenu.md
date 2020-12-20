@@ -2,9 +2,9 @@
 appmenu:
   - heroiconname:
       - Adjustments
-    label: Test
-    slug: /test
+    label: Home
+    slug: /home
     iconname:
-      - ArrowDown
-    iconstyle: solid
+      - Home
+    iconstyle: outline
 ---
