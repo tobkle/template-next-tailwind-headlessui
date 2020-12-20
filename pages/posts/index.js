@@ -1,7 +1,9 @@
 import Link from "next/link"
 import DebugData from "components/debug-data"
+const contentType = "posts"
 
-export default function Post({ entities }) {
+export default function Post(props) {
+    const { entities, menu } = props
     return (
         <>
             <ul>
@@ -15,29 +17,32 @@ export default function Post({ entities }) {
                     ))}
             </ul>
 
-            <DebugData page="Posts" data={entities} name="entities" />
+            <DebugData page="Posts" data={props} name="entities" />
         </>
     )
 }
 
-// Reading all Posts
-const contentType = "posts"
+const contentFields = [
+    "slug",
+    "title",
+    "draft",
+    "image",
+    "author",
+    "date",
+    "date_to",
+    "published",
+    "tags",
+]
 export async function getStaticProps({ params }) {
-    const fs = require("fs")
-    const matter = require("gray-matter")
-    const contentPath = `${process.cwd()}/content/${contentType}`
-    const files = fs.readdirSync(contentPath)
-    const entities = files
-        .filter((file) => file.endsWith(".md"))
-        .map((file) => {
-            const path = `${contentPath}/${file}`
-            const content = fs.readFileSync(path, { encoding: "utf-8" })
-            const { data } = matter(content)
-            return { slug: file.replace(".md", ""), ...data }
-        })
+    const getAll = require("lib/api").getAll
+    const menuType = "menu"
+    const menuFields = ["menues"]
+    const menu = getAll(menuType, menuFields)
+    const entities = getAll(contentType, contentFields)
     return {
         props: {
             entities,
+            menu,
         },
     }
 }

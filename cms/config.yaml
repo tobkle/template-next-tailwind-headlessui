@@ -188,26 +188,56 @@ collections:
       label_singular: Menu
       description: Maintain Site Navigation
       files:
-          - name: menues
-            label: Menu
-            label_singular: Menu
+          - name: menu
+            label: Site Menu
+            label_singular: Site Menu
             file: content/menu/menu.md
             fields:
-                - label: Menu
+                - label: Site Menu
                   label_singular: Menu
-                  name: menues
+                  name: menu
                   widget: list
                   fields:
-                      - label: Title
-                        name: name
+                      - label: Label
+                        name: label
                         widget: string
-                      - label: Url
+                      - label: Link
                         name: slug
                         widget: string
-                      - label: image
-                        name: image
-                        widget: image
-                        required: false
+                      - label: Icon Style
+                        name: iconstyle
+                        widget: select
+                        options: ["outline", "solid"]
+                        multiple: false
+                        required: true
+                      - label: HeroIcon
+                        name: iconname
+                        widget: heroicon
+          - name: appmenu
+            label: App Menu
+            label_singular: App Menu
+            file: content/menu/appmenu.md
+            fields:
+                - label: App Menu
+                  label_singular: App Menu
+                  name: appmenu
+                  widget: list
+                  fields:
+                      - label: Label
+                        name: label
+                        widget: string
+                      - label: Link
+                        name: slug
+                        widget: string
+                      - label: HeroIcon
+                        name: iconname
+                        widget: heroicon
+                      - label: Icon Style
+                        name: iconstyle
+                        widget: select
+                        options: ["outline", "solid"]
+                        multiple: false
+                        required: true
 
     #   P O S T S  -----------
     - name: posts
@@ -434,7 +464,7 @@ collections:
     #   F A Q S  -----------
     - name: "faq" # Used in routes, ie.: /admin/collections/:slug/edit
       label: "FAQ" # Used in the UI
-      folder: "faqs"
+      folder: "/content/faqs"
       create: true # Allow users to create new documents in this collection
       fields: # The fields each document in this collection have
           - {

@@ -4,12 +4,15 @@
     "private": true,
     "scripts": {
         "dev": "next dev -p 4000",
+        "debug": "next dev -p 4000",
+        "buildcms": "npx tailwindcss build ./styles/tailwind.css -c ./tailwind.config.js -o ./public/css/tailwindCMS.css",
         "build": "next build",
         "start": "next start"
     },
     "dependencies": {
         "@headlessui/react": "^0.2.0",
         "classnames": "^2.2.6",
+        "create-react-class": "^15.7.0",
         "date-fns": "^2.16.1",
         "js-cookie": "^2.2.1",
         "netlify-cms-app": "^2.14.6",

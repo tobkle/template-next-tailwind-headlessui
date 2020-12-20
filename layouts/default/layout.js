@@ -20,7 +20,7 @@ export default function Layout({
                 <title>{title}</title>
             </Head>
 
-            <div className="relative flex flex-col h-screen">
+            <div className="relative flex flex-row flex-wrap h-screen">
                 {header && <Header nav={nav} logo={logo} />}
 
                 {main && (

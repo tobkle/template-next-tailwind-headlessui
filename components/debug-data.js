@@ -6,15 +6,17 @@ export default function DebugData({ page = "", data, name = "name" }) {
     const { debug, setDebug } = useContext(Context)
     return (
         <>
+            {/* Debug Button -- if not in production and not in debug mode */}
             {!debug && process.env.NODE_ENV !== "production" && (
                 <span
                     onClick={() => setDebug(true)}
-                    className="fixed top-60 right-0 bg-green-900 text-sm text-white p-1 rounded-b-lg origin-top-right px-4 py-1 cursor-pointer transform rotate-90"
+                    className="fixed bottom-60 right-0 bg-green-900 text-sm text-white p-1 rounded-b-lg origin-top-right px-4 py-1 cursor-pointer transform rotate-90"
                 >
                     Debug
                 </span>
             )}
 
+            {/* Debug Modal -- if not in production but in debug mode */}
             {debug && process.env.NODE_ENV !== "production" && (
                 <Modal show={debug} setShow={setDebug} title={`${page} Data`}>
                     <div className="bg-green-50 border-t-2 border-b-2 border-green-700 text-green-900">

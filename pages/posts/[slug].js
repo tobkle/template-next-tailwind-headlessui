@@ -4,7 +4,8 @@ import DebugData from "components/debug-data"
 const contentType = "posts"
 const contentTypeFields = getFieldsFromConfig(contentType)
 
-export default function Post({ entity }) {
+export default function Post(props) {
+    const { entity, menu } = props
     return (
         <>
             <Layout
@@ -13,9 +14,10 @@ export default function Post({ entity }) {
                 main={true}
                 aside={true}
                 footer={true}
+                menu={menu}
             ></Layout>
 
-            <DebugData page="Post" data={entity} name="entity" />
+            <DebugData page="Post" data={props} name="entity" />
         </>
     )
 }
@@ -34,10 +36,15 @@ export async function getStaticPaths() {
 
 // get the content to a slug to generate a static page
 export async function getStaticProps({ params }) {
+    const getAll = require("lib/api").getAll
+    const menuType = "menu"
+    const menuFields = ["menues"]
+    const menu = getAll(menuType, menuFields)
     const entity = getBySlug(contentType, params.slug, contentTypeFields)
     return {
         props: {
             entity,
+            menu,
         },
     }
 }
