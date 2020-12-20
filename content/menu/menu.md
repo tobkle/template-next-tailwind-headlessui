@@ -1,7 +1,7 @@
 ---
 menues:
   - name: Home
-    slug: /home
+    slug: /
     image: null
   - name: About
     slug: /about

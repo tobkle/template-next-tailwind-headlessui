@@ -1,5 +1,5 @@
 ---
-slug: home
+slug: /
 title: Home
 sections:
     - section: header-section
