@@ -1,12 +1,7 @@
 ---
 appmenu:
   - heroiconname:
-      - a
-      - b
-      - c
-      - d
-      - e
-      - f
+      - Adjustments
     label: Test
     slug: /test
     iconname: AcademicCap
