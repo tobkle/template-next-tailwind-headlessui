@@ -6,6 +6,7 @@ appmenu:
       - c
       - d
       - e
+      - f
     label: Test
     slug: /test
     iconname: AcademicCap
