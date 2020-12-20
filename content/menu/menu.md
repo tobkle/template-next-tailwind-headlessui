@@ -12,4 +12,9 @@ menu:
     iconstyle: outline
     iconname:
       - Home
+  - label: About
+    slug: /about
+    iconstyle: outline
+    iconname:
+      - LightBulb
 ---
