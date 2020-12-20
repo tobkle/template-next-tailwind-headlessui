@@ -1,3 +1,3 @@
 export default function Aside() {
-    return <aside>Aside</aside>
+    return <aside className="bg-indigo-400 w-10">Aside</aside>
 }

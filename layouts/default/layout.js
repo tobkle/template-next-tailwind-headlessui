@@ -1,13 +1,15 @@
 import Head from "next/head"
 import Header from "./header"
 import Main from "./main"
-import Aside from "./aside"
 import Footer from "./footer"
 
 export default function Layout({
     title = "",
     header = true,
+    nav = true,
+    logo = true,
     main = true,
+    article = true,
     aside = true,
     footer = true,
     children,
@@ -18,10 +20,17 @@ export default function Layout({
                 <title>{title}</title>
             </Head>
 
-            {header && <Header />}
-            {aside && <Aside />}
-            {main && <Main>{children}</Main>}
-            {footer && <Footer />}
+            <div className="relative flex flex-col h-screen">
+                {header && <Header nav={nav} logo={logo} />}
+
+                {main && (
+                    <Main aside={aside} article={article}>
+                        {children}
+                    </Main>
+                )}
+
+                {footer && <Footer />}
+            </div>
         </>
     )
 }

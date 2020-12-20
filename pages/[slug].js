@@ -1,9 +1,23 @@
 import { getAll, getBySlug, getFieldsFromConfig } from "lib/api"
+import Layout from "layouts/default"
+import DebugData from "components/debug-data"
 const contentType = "pages"
 const contentTypeFields = getFieldsFromConfig(contentType)
 
 export default function Page({ entity }) {
-    return <pre>{JSON.stringify(entity, null, 2)}</pre>
+    return (
+        <>
+            <Layout
+                title="Home"
+                header={true}
+                main={true}
+                aside={true}
+                footer={true}
+            ></Layout>
+
+            <DebugData page="Page" data={entity} name="entity" />
+        </>
+    )
 }
 
 // get all slugs for that content type

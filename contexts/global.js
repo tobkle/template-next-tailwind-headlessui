@@ -4,6 +4,7 @@ import config from "config"
 export const Context = createContext()
 
 export default function ContextProvider({ children }) {
+    const [debug, setDebug] = useState(config.debug)
     const [cookieAccept, setCookieAccept] = useState(false)
     const [orientation, setOrientation] = useState("landscape")
     const [width, setWidth] = useState(0)
@@ -31,6 +32,8 @@ export default function ContextProvider({ children }) {
         <Context.Provider
             value={{
                 config,
+                debug,
+                setDebug,
                 cookieAccept,
                 setCookieAccept,
                 width,

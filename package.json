@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@headlessui/react": "^0.2.0",
+        "classnames": "^2.2.6",
         "date-fns": "^2.16.1",
         "js-cookie": "^2.2.1",
         "netlify-cms-app": "^2.14.6",

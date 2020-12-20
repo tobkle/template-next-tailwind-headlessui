@@ -1,6 +1,9 @@
 import crypto from "crypto"
 
 export default {
+    // switching debugging information on/off
+    debug: false,
+
     // generate a random cookie name
     cookieName: crypto.randomBytes(16).toString("hex"),
 
