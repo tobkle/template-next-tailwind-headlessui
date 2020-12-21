@@ -10,31 +10,29 @@ export default function MenuItems({
     linkCurrent = "",
     linkDefault = "",
 }) {
-    const { appmenu } = menu[0]
-    if (!appmenu || appmenu.length < 1) return null
+    const { appmenu = [] } = menu.filter((m) => Object.keys(m).length > 0).pop()
     return (
         <>
-            {appmenu &&
-                appmenu.map(({ slug, label, iconname, iconstyle }, i) => (
-                    <Link key={slug} href={slug}>
-                        <a
+            {appmenu.map(({ slug, label, iconname, iconstyle }, i) => (
+                <Link key={slug} href={slug}>
+                    <a
+                        className={cn({
+                            [linkCurrent]: i === 0,
+                            [linkDefault]: i !== 0,
+                        })}
+                    >
+                        <Icon
+                            iconstyle={iconstyle}
+                            iconname={iconname}
                             className={cn({
-                                [linkCurrent]: i === 0,
-                                [linkDefault]: i !== 0,
+                                [iconCurrent]: i === 0,
+                                [iconDefault]: i !== 0,
                             })}
-                        >
-                            <Icon
-                                iconstyle={iconstyle}
-                                iconname={iconname}
-                                className={cn({
-                                    [iconCurrent]: i === 0,
-                                    [iconDefault]: i !== 0,
-                                })}
-                            />
-                            {label}
-                        </a>
-                    </Link>
-                ))}
+                        />
+                        {label}
+                    </a>
+                </Link>
+            ))}
         </>
     )
 }
