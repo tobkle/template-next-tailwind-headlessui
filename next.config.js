@@ -6,6 +6,10 @@ const nextConfig = {
         domains: [],
     },
     webpack: (cfg) => {
+        cfg.module.rules.push({
+            test: /\.md$/,
+            use: [{ loader: "gray-matter-loader" }],
+        })
         // console.log(JSON.stringify(cfg, null, 2))
         return cfg
     },

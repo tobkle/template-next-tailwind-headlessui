@@ -1,12 +1,20 @@
+import Container from "./container"
 import Article from "./article"
 import Aside from "./aside"
 
-export default function Main({ article = true, aside = true, children }) {
+export default function Main({
+    main = true,
+    aside = true,
+    article = true,
+    children,
+}) {
+    if (!main) return null
     return (
-        // <main className="w-screen flex flex-row flex-wrap justify-between items-stretch">
-        <main className="flex-auto flex flex-row flex-wrap">
-            {aside && <Aside />}
-            {article && <Article children={children} />}
+        <main>
+            <Container>
+                <Aside aside={aside} />
+                <Article article={article} children={children} />
+            </Container>
         </main>
     )
 }

@@ -1,7 +1,10 @@
-export default function Footer() {
+import Container from "./container"
+
+export default function Footer({ footer = true }) {
+    if (!footer) return null
     return (
-        <footer className="md:sticky bottom-0 flex-auto bg-teal-200">
-            Footer
+        <footer>
+            <Container>Footer</Container>
         </footer>
     )
 }

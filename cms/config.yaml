@@ -32,6 +32,54 @@ collections:
                 - name: base_url
                   label: Base Url
                   widget: string
+                - name: logo
+                  label: Logo
+                  widget: object
+                  fields:
+                      - name: imageinlogo
+                        label: Use image in Logo
+                        widget: boolean
+                        default: true
+                        required: false
+                      - name: textinlogo
+                        label: Use Text in Logo
+                        widget: boolean
+                        default: true
+                        required: false
+                      - name: text
+                        label: Text Logo
+                        widget: string
+                        default: Example Inc.
+                        required: false
+                      - name: image
+                        label: Image
+                        widget: image
+                        required: false
+                      - name: alt
+                        label: Image Text
+                        widget: string
+                        default: Logo
+                        required: true
+                      - name: layout
+                        label: Image Layout
+                        widget: select
+                        multiple: false
+                        options: ["fill", "responsive", "fixed", "intrinsic"]
+                        default: ["responsive"]
+                      - name: width
+                        label: Width
+                        widget: number
+                        min: 0
+                        max: 1920
+                        default: 100
+                        required: true
+                      - name: height
+                        label: height
+                        widget: number
+                        min: 0
+                        max: 1920
+                        default: 80
+                        required: true
                 - name: posts
                   label: Post Settings
                   widget: object

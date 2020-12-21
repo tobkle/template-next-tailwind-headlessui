@@ -1,9 +1,20 @@
-import Nav from "./nav"
+import Container from "./container"
+import Logo from "./logo"
+import Navbar from "./navbar"
 
-export default function Header({ nav = true, logo = true }) {
+export default function Header({
+    header = true,
+    logo = true,
+    nav = true,
+    menu = [],
+}) {
+    if (!header) return null
     return (
-        <header className="md:sticky top-0 flex-auto bg-teal-200">
-            {nav && <Nav />}
+        <header>
+            <Container>
+                <Logo logo={logo} />
+                <Navbar nav={nav} menu={menu} />
+            </Container>
         </header>
     )
 }

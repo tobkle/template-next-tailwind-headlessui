@@ -2,35 +2,36 @@ import Head from "next/head"
 import Header from "./header"
 import Main from "./main"
 import Footer from "./footer"
+import config from "config"
 
 export default function Layout({
     title = "",
-    menu = "",
     header = true,
-    nav = true,
     logo = true,
+    nav = true,
+    menu = [],
     main = true,
-    article = true,
     aside = true,
+    article = true,
     footer = true,
     children,
 }) {
     return (
         <>
             <Head>
-                <title>{title}</title>
+                <title>
+                    {title} | {config.SeoSiteTitle}
+                </title>
             </Head>
 
-            <div className="relative flex flex-col flex-wrap h-screen">
-                {header && <Header nav={nav} logo={logo} menu={menu} />}
+            <div className="flex flex-col h-screen">
+                <Header header={header} logo={logo} nav={nav} menu={menu} />
 
-                {main && (
-                    <Main aside={aside} article={article}>
-                        {children}
-                    </Main>
-                )}
+                <Main main={main} aside={aside} article={article}>
+                    {children}
+                </Main>
 
-                {footer && <Footer />}
+                <Footer footer={footer} />
             </div>
         </>
     )

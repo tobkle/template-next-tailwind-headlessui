@@ -1,7 +1,4 @@
-export default function Aside() {
-    return (
-        <aside className="flex-auto md:flex-1 bg-indigo-400 w-min-20">
-            Aside
-        </aside>
-    )
+export default function Aside({ aside = true }) {
+    if (!aside) return null
+    return <aside className="flex-1 bg-indigo-400">Aside</aside>
 }
