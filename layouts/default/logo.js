@@ -1,10 +1,10 @@
 import Image from "components/image"
 import Settings from "content/settings/settings.md"
+// import Element from "content/elements/logo.md"
 
 export default function Logo({ logo = true }) {
     const logoSettings = Settings.data.logo
     if (!logo) return null
-    console.log(logoSettings)
     let Text = () => null
     let Img = () => null
 
@@ -27,10 +27,22 @@ export default function Logo({ logo = true }) {
         )
     }
 
+    // return (
+    //     <div
+    //         dangerouslySetInnerHTML={createMarkup(Element.data.content.code)}
+    //     />
+    // )
+
     return (
         <div id="logo" className={logoSettings.logo_classname}>
             <Img />
             <Text />
         </div>
     )
+}
+
+function createMarkup(element) {
+    return {
+        __html: element,
+    }
 }

@@ -32,6 +32,8 @@ collections:
                 - name: base_url
                   label: Base Url
                   widget: string
+
+                  # --- L O G O ----
                 - name: logo
                   label: Logo
                   widget: object
@@ -92,6 +94,7 @@ collections:
                         label: Text Tailwind Class
                         widget: string
                         default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
+                        # --- P O S T   S E T T I N G S ---
                 - name: posts
                   label: Post Settings
                   widget: object

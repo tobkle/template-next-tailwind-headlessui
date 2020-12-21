@@ -6,6 +6,7 @@ import {
     HeroIconPreview,
     HeroIconSchema,
 } from "cms/widget/heroicon"
+import ElementPreview from "cms/preview/element-preview"
 
 export default function AdminPage() {
     const CMS = dynamic(
@@ -34,6 +35,8 @@ export default function AdminPage() {
                     HeroIconPreview,
                     HeroIconSchema
                 )
+
+                window.cms.registerPreviewTemplate("elements", ElementPreview)
             }),
         { ssr: false, loading: () => <p>Loading...</p> }
     )
