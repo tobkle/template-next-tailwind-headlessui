@@ -46,27 +46,15 @@ collections:
                         widget: boolean
                         default: true
                         required: false
-                      - name: logo_classname
-                        label: Logo Container Tailwind Class
-                        widget: string
-                        default: flex flex-col w-40 h-10
                       - name: text
                         label: Text Logo
                         widget: string
                         default: Example Inc.
                         required: false
-                      - name: text_classname
-                        label: Text Tailwind Class
-                        widget: string
-                        default: text-gray-900 text-xl uppercase
                       - name: image
                         label: Image
                         widget: image
                         required: false
-                      - name: image_classname
-                        label: Image Tailwind Class
-                        widget: string
-                        default: flex-auto
                       - name: alt
                         label: Image Text
                         widget: string
@@ -92,6 +80,18 @@ collections:
                         max: 1920
                         default: 80
                         required: true
+                      - name: logo_classname
+                        label: Logo Container Tailwind Class
+                        widget: string
+                        default: relative flex flex-col w-48 h-10 mt-4 mb-10
+                      - name: image_classname
+                        label: Image Tailwind Class
+                        widget: string
+                        default:
+                      - name: text_classname
+                        label: Text Tailwind Class
+                        widget: string
+                        default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
                 - name: posts
                   label: Post Settings
                   widget: object

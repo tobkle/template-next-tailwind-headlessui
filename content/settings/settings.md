@@ -2,19 +2,19 @@
 site_title: Example Inc.
 base_url: https://example.com
 logo:
-  width: 100
-  height: 80
-  alt: Logo
-  layout: responsive
-  imageinlogo: true
-  text: Example Inc.
-  logo_classname: flex flex-col w-40 h-10
-  text_classname: text-gray-900 text-xl uppercase
-  image: /img/vercel.svg
-  textinlogo: true
-  image_classname: flex-auto
+    textinlogo: true
+    imageinlogo: true
+    width: 320
+    height: 70
+    alt: Logo
+    layout: fill
+    text: Example Inc.
+    logo_classname: relative flex flex-col w-48 h-10 mt-4 mb-10
+    image_classname:
+    text_classname: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
+    image: /img/vercel.svg
 posts:
-  author:
-    - Toby
-  front_limit: 3
+    author:
+        - Toby
+    front_limit: 3
 ---
