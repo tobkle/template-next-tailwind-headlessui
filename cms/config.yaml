@@ -205,6 +205,20 @@ collections:
           - name: title
             label: Title
             widget: string
+          - name: main_menu
+            label: Menu Header
+            widget: relation
+            collection: menu
+            value_field: "{{slug}}"
+            search_fields: ["title"]
+            display_fields: ["title"]
+          - name: footer_menu
+            label: Menu Footer
+            widget: relation
+            collection: menu
+            value_field: "{{slug}}"
+            search_fields: ["title"]
+            display_fields: ["title"]
           - name: sections
             label: Sections
             label_singular: Section
@@ -283,56 +297,6 @@ collections:
                 - label: HeroIcon
                   name: iconname
                   widget: heroicon
-          # - name: appmenu
-          #   label: App Menu
-          #   label_singular: App Menu
-          #   file: content/menu/appmenu.md
-          #   fields:
-          #       - label: App Menu
-          #         label_singular: App Menu
-          #         name: appmenu
-          #         widget: list
-          #         fields:
-          #             - label: Label
-          #               name: label
-          #               widget: string
-          #             - label: Link
-          #               name: slug
-          #               widget: string
-          #             - label: HeroIcon
-          #               name: iconname
-          #               widget: heroicon
-          #             - label: Icon Style
-          #               name: iconstyle
-          #               widget: select
-          #               options: ["outline", "solid"]
-          #               multiple: false
-          #               required: true
-          # - name: footermenu
-          #   label: Footer Menu
-          #   label_singular: Footer Menu
-          #   file: content/menu/footermenu.md
-          #   fields:
-          #       - label: Footer Menu
-          #         label_singular: Footer Menu
-          #         name: footermenu
-          #         widget: list
-          #         fields:
-          #             - label: Label
-          #               name: label
-          #               widget: string
-          #             - label: Link
-          #               name: slug
-          #               widget: string
-          #             - label: HeroIcon
-          #               name: iconname
-          #               widget: heroicon
-          #             - label: Icon Style
-          #               name: iconstyle
-          #               widget: select
-          #               options: ["outline", "solid"]
-          #               multiple: false
-          #               required: true
 
     #   P O S T S  -----------
     - name: posts
@@ -492,7 +456,7 @@ collections:
       fields:
           - label: Calendar
             name: calendar
-            widget: number
+            widget: string
             required: true
           - name: dates
             label: Events
