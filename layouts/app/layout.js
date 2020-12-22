@@ -5,9 +5,27 @@ import Main from "./main"
 import MenuMobileNavbar from "./menu-mobile-navbar"
 import MenuMobile from "./menu-mobile"
 
-export default function Layout({ entity = {}, menu = [], children }) {
+export default function Layout({ entity = {}, children }) {
     const [showMenu, setShowMenu] = useState(false)
-    const { main_menu, footer_menu } = entity
+
+    const {
+        title = "",
+        main_menu = "site_menu",
+        footer_menu = "footer_menu",
+        menu = [],
+        layout = {},
+    } = entity
+
+    const {
+        header = false,
+        logo = false,
+        nav = false,
+        main = false,
+        aside = false,
+        article = false,
+        footer = false,
+    } = layout
+
     return (
         <div className="h-screen flex overflow-hidden bg-white">
             <MenuMobile

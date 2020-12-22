@@ -1,22 +1,14 @@
 import { getFieldsFromConfig } from "lib/api"
-import Layout from "layouts/default"
+import Layout from "layouts/site"
 import DebugData from "components/debug-data"
 const contentType = "pages"
 const contentTypeFields = getFieldsFromConfig(contentType)
 
 export default function Page(props) {
-    const { entity, menu } = props
+    const { entity } = props
     return (
         <>
-            <Layout
-                title="Home"
-                header={true}
-                main={true}
-                aside={true}
-                footer={true}
-                entity={entity}
-                menu={menu}
-            >
+            <Layout entity={entity}>
                 <section>
                     Aliquip eiusmod aute non aliqua commodo adipisicing ut
                     pariatur. Deserunt enim reprehenderit adipisicing ea magna.
@@ -111,10 +103,10 @@ export async function getStaticProps({ params }) {
     const menuFields = ["menu_entries", "slug"]
     const menu = getAll(menuType, menuFields)
     const entity = getBySlug(contentType, params.slug, contentTypeFields)
+    entity.menu = menu
     return {
         props: {
             entity,
-            menu,
         },
     }
 }

@@ -6,21 +6,27 @@ import Main from "./main"
 import Footer from "./footer"
 import config from "config"
 
-export default function Layout({
-    title = "",
-    header = true,
-    logo = true,
-    nav = true,
-    entity = {},
-    menu = [],
-    main = true,
-    aside = true,
-    article = true,
-    footer = true,
-    children,
-}) {
+export default function Layout({ entity = {}, children }) {
     const [showMenu, setShowMenu] = useState(false)
-    const { main_menu, footer_menu } = entity
+
+    const {
+        title = "",
+        main_menu = "site_menu",
+        footer_menu = "footer_menu",
+        menu = [],
+        layout = {},
+    } = entity
+
+    const {
+        header = false,
+        logo = false,
+        nav = false,
+        main = false,
+        aside = false,
+        article = false,
+        footer = false,
+    } = layout
+
     return (
         <>
             <Head>
@@ -44,6 +50,7 @@ export default function Layout({
                     menu_name={main_menu}
                     menu={menu}
                     showMenu={showMenu}
+                    setShowMenu={setShowMenu}
                 />
 
                 <Main main={main} aside={aside} article={article}>

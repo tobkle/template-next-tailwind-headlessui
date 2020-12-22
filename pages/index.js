@@ -5,18 +5,10 @@ const contentType = "pages"
 const contentTypeFields = getFieldsFromConfig(contentType)
 
 export default function Page(props) {
-    const { entity, menu } = props
+    const { entity } = props
     return (
         <>
-            <Layout
-                title="Home"
-                header={true}
-                main={true}
-                aside={true}
-                footer={true}
-                entity={entity}
-                menu={menu}
-            >
+            <Layout entity={entity}>
                 {[0, 1, 2, 3, 4, 5].map((a, i) => (
                     <section className="bg-yellow-200 m-4" key={i}>
                         <p>
@@ -78,10 +70,10 @@ export async function getStaticProps({ params }) {
     const menuFields = ["menu_entries", "slug"]
     const menu = getAll(menuType, menuFields)
     const entity = getBySlug(contentType, "home", contentTypeFields)
+    entity.menu = menu
     return {
         props: {
             entity,
-            menu,
         },
     }
 }

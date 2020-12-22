@@ -86,26 +86,32 @@ collections:
                         label: Logo Container Tailwind Class Desktop
                         widget: string
                         default: relative flex flex-col w-48 h-10 mt-4 mb-10
+                        required: false
                       - name: image_classname
                         label: Image Tailwind Class Desktop
                         widget: string
                         default:
+                        required: false
                       - name: text_classname
                         label: Text Tailwind Class Desktop
                         widget: string
                         default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
+                        required: false
                       - name: logo_classname_mobile
                         label: Logo Container Tailwind Class Mobile
                         widget: string
                         default: relative flex flex-col w-48 h-10 mt-4 mb-10
+                        required: false
                       - name: image_classname_mobile
                         label: Image Tailwind Class Mobile
                         widget: string
                         default:
+                        required: false
                       - name: text_classname_mobile
                         label: Text Tailwind Class Mobile
                         widget: string
                         default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
+                        required: false
                         # --- P O S T   S E T T I N G S ---
                 - name: posts
                   label: Post Settings
@@ -129,6 +135,80 @@ collections:
                         hint: ""
                         multiple: true
                         options_length: 20
+                      - name: main_menu
+                        label: Menu Header
+                        widget: relation
+                        collection: menu
+                        value_field: "{{slug}}"
+                        search_fields: ["title"]
+                        display_fields: ["title"]
+                      - name: footer_menu
+                        label: Menu Footer
+                        widget: relation
+                        collection: menu
+                        value_field: "{{slug}}"
+                        search_fields: ["title"]
+                        display_fields: ["title"]
+                      - name: sections
+                        label: Sections
+                        label_singular: Section
+                        widget: list
+                        allow_add: true
+                        collapsed: false
+                        fields:
+                            - name: section
+                              label: Section
+                              widget: relation
+                              collection: sections
+                              value_field: "{{slug}}"
+                              search_fields: ["name"]
+                              display_fields: ["name"]
+                      - name: layout
+                        label: Layout
+                        widget: object
+                        fields:
+                            - name: page_layout
+                              label: Choose Page Layout
+                              widget: select
+                              options: ["app", "site"]
+                              default: ["site"]
+                              required: true
+                              hint: Have a look into folder /layouts
+                            - name: header
+                              label: Show Header
+                              widget: boolean
+                              default: true
+                              required: false
+                            - name: logo
+                              label: Show Logo
+                              widget: boolean
+                              default: true
+                              required: false
+                            - name: nav
+                              label: Show Navigation
+                              widget: boolean
+                              default: true
+                              required: false
+                            - name: main
+                              label: Show Main Area
+                              widget: boolean
+                              default: true
+                              required: false
+                            - name: aside
+                              label: Show Aside Area
+                              widget: boolean
+                              default: false
+                              required: false
+                            - name: article
+                              label: Show Article Area
+                              widget: boolean
+                              default: true
+                              required: false
+                            - name: footer
+                              label: Show Footer
+                              widget: boolean
+                              default: true
+                              required: false
 
     #   E L E M E N T S -----------
     - name: elements
@@ -249,6 +329,13 @@ collections:
             label: Layout
             widget: object
             fields:
+                - name: page_layout
+                  label: Choose Page Layout
+                  widget: select
+                  options: ["app", "site"]
+                  default: ["site"]
+                  required: true
+                  hint: Have a look into folder /layouts
                 - name: header
                   label: Show Header
                   widget: boolean

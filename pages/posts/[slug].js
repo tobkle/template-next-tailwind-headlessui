@@ -1,5 +1,5 @@
 import { getAll, getBySlug, getFieldsFromConfig } from "lib/api"
-import Layout from "layouts/default"
+import Layout from "layouts/site"
 import DebugData from "components/debug-data"
 const contentType = "posts"
 const contentTypeFields = getFieldsFromConfig(contentType)
@@ -8,14 +8,7 @@ export default function Post(props) {
     const { entity, menu } = props
     return (
         <>
-            <Layout
-                title="Home"
-                header={true}
-                main={true}
-                aside={true}
-                footer={true}
-                menu={menu}
-            ></Layout>
+            <Layout entity={{}}></Layout>
 
             <DebugData page="Post" data={props} name="entity" />
         </>

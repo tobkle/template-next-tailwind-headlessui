@@ -3,9 +3,9 @@ import DebugData from "components/debug-data"
 const contentType = "posts"
 
 export default function Post(props) {
-    const { entities, menu } = props
+    const { entity, entities } = props
     return (
-        <>
+        <Layout entity={entity}>
             <ul>
                 {entities &&
                     entities.map((e, i) => (
@@ -18,7 +18,7 @@ export default function Post(props) {
             </ul>
 
             <DebugData page="Posts" data={props} name="entities" />
-        </>
+        </Layout>
     )
 }
 
@@ -39,10 +39,22 @@ export async function getStaticProps({ params }) {
     const menuFields = ["menues"]
     const menu = getAll(menuType, menuFields)
     const entities = getAll(contentType, contentFields)
+    const entity = {
+        layout: {
+            header: true,
+            logo: true,
+            nav: true,
+            main: true,
+            aside: false,
+            article: true,
+            footer: true,
+        },
+    }
+    entity.menu = menu
     return {
         props: {
+            entity,
             entities,
-            menu,
         },
     }
 }
