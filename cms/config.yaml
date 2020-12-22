@@ -250,57 +250,89 @@ collections:
       label: └Menu
       label_singular: Menu
       description: Maintain Site Navigation
-      files:
-          - name: menu
-            label: Site Menu
-            label_singular: Site Menu
-            file: content/menu/menu.md
+      folder: /content/menu
+      extension: md
+      format: frontmatter
+      create: true
+      delete: true
+      identifier_field: slug
+      slug: "{{fields.title}}"
+      summary: "{{fields.title}}"
+      fields:
+          - name: title
+            label: Title
+            widget: string
+            required: true
+          - label: Site Menu
+            label_singular: Menu
+            name: menu
+            widget: list
             fields:
-                - label: Site Menu
-                  label_singular: Menu
-                  name: menu
-                  widget: list
-                  fields:
-                      - label: Label
-                        name: label
-                        widget: string
-                      - label: Link
-                        name: slug
-                        widget: string
-                      - label: Icon Style
-                        name: iconstyle
-                        widget: select
-                        options: ["outline", "solid"]
-                        multiple: false
-                        required: true
-                      - label: HeroIcon
-                        name: iconname
-                        widget: heroicon
-          - name: appmenu
-            label: App Menu
-            label_singular: App Menu
-            file: content/menu/appmenu.md
-            fields:
-                - label: App Menu
-                  label_singular: App Menu
-                  name: appmenu
-                  widget: list
-                  fields:
-                      - label: Label
-                        name: label
-                        widget: string
-                      - label: Link
-                        name: slug
-                        widget: string
-                      - label: HeroIcon
-                        name: iconname
-                        widget: heroicon
-                      - label: Icon Style
-                        name: iconstyle
-                        widget: select
-                        options: ["outline", "solid"]
-                        multiple: false
-                        required: true
+                - label: Label
+                  name: label
+                  widget: string
+                - label: Link
+                  name: slug
+                  widget: string
+                - label: Icon Style
+                  name: iconstyle
+                  widget: select
+                  options: ["outline", "solid"]
+                  multiple: false
+                  required: true
+                - label: HeroIcon
+                  name: iconname
+                  widget: heroicon
+          # - name: appmenu
+          #   label: App Menu
+          #   label_singular: App Menu
+          #   file: content/menu/appmenu.md
+          #   fields:
+          #       - label: App Menu
+          #         label_singular: App Menu
+          #         name: appmenu
+          #         widget: list
+          #         fields:
+          #             - label: Label
+          #               name: label
+          #               widget: string
+          #             - label: Link
+          #               name: slug
+          #               widget: string
+          #             - label: HeroIcon
+          #               name: iconname
+          #               widget: heroicon
+          #             - label: Icon Style
+          #               name: iconstyle
+          #               widget: select
+          #               options: ["outline", "solid"]
+          #               multiple: false
+          #               required: true
+          # - name: footermenu
+          #   label: Footer Menu
+          #   label_singular: Footer Menu
+          #   file: content/menu/footermenu.md
+          #   fields:
+          #       - label: Footer Menu
+          #         label_singular: Footer Menu
+          #         name: footermenu
+          #         widget: list
+          #         fields:
+          #             - label: Label
+          #               name: label
+          #               widget: string
+          #             - label: Link
+          #               name: slug
+          #               widget: string
+          #             - label: HeroIcon
+          #               name: iconname
+          #               widget: heroicon
+          #             - label: Icon Style
+          #               name: iconstyle
+          #               widget: select
+          #               options: ["outline", "solid"]
+          #               multiple: false
+          #               required: true
 
     #   P O S T S  -----------
     - name: posts

@@ -1,4 +1,5 @@
 import Link from "components/link"
+import Icon from "components/icon"
 
 export default function Navbar({ nav = true, menu = [] }) {
     if (!nav) return null
@@ -19,7 +20,13 @@ export default function Navbar({ nav = true, menu = [] }) {
                     index={i}
                     key={i}
                 >
-                    <li>{label}</li>
+                    <Icon
+                        className="text-gray-600"
+                        iconstyle={iconstyle}
+                        iconname={iconname}
+                    />
+
+                    {label}
                 </Link>
             ))}
         </nav>
