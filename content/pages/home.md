@@ -1,6 +1,8 @@
 ---
 slug: home
 title: Home
+main_menu: site_menu
+footer_menu: footer_menu
 sections:
   - section: header-section
 published: true
