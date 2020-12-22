@@ -117,6 +117,11 @@ collections:
                   label: Post Settings
                   widget: object
                   fields:
+                      - name: title
+                        label: Page Titel for Posts
+                        widget: string
+                        required: true
+                        default: Blog
                       - name: front_limit
                         label: Number of posts on frontpage
                         widget: number
@@ -472,7 +477,11 @@ collections:
             name: "image"
             widget: "image"
             required: false
-            tagname: ""
+          - label: "Cover Image Description"
+            name: "image_alt"
+            widget: "string"
+            required: true
+            hint: Will be visible to users
           - label: Content
             name: body
             widget: markdown

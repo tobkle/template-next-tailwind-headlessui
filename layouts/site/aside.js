@@ -1,4 +1,11 @@
-export default function Aside({ aside = true }) {
+import Tree from "components/tree"
+
+export default function Aside({ aside = true, aside_content }) {
     if (!aside) return null
-    return <aside className="flex-1 bg-indigo-400">Aside</aside>
+    if (!aside_content || !Object.keys(aside_content).length) return null
+    return (
+        <aside className="flex-1 py-6">
+            <Tree data={aside_content} />
+        </aside>
+    )
 }

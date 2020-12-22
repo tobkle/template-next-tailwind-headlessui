@@ -6,7 +6,7 @@ import Main from "./main"
 import Footer from "./footer"
 import config from "config"
 
-export default function Layout({ entity = {}, children }) {
+export default function Layout({ entity = {}, aside_content, children }) {
     const [showMenu, setShowMenu] = useState(false)
 
     const {
@@ -53,7 +53,12 @@ export default function Layout({ entity = {}, children }) {
                     setShowMenu={setShowMenu}
                 />
 
-                <Main main={main} aside={aside} article={article}>
+                <Main
+                    main={main}
+                    aside={aside}
+                    article={article}
+                    aside_content={aside_content}
+                >
                     {children}
                 </Main>
 

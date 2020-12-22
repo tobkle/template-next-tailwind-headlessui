@@ -1,8 +1,5 @@
-import { getFieldsFromConfig } from "lib/api"
 import Layout from "layouts/site"
 import DebugData from "components/debug-data"
-const contentType = "pages"
-const contentTypeFields = getFieldsFromConfig(contentType)
 
 export default function Page(props) {
     const { entity } = props
@@ -85,10 +82,12 @@ export default function Page(props) {
 // get all slugs for that content type
 export async function getStaticPaths() {
     const getAll = require("lib/api").getAll
-    const entities = await getAll(contentType, ["slug"])
+
+    const entities = await getAll("pages", ["slug"])
     const paths = entities.map((entity) => ({
         params: { slug: entity.slug },
     }))
+
     return {
         paths,
         fallback: false,
@@ -99,11 +98,15 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const getAll = require("lib/api").getAll
     const getBySlug = require("lib/api").getBySlug
+    const getFieldsFromConfig = require("lib/api").getFieldsFromConfig
+
+    const contentTypeFields = getFieldsFromConfig("pages")
     const menuType = "menu"
     const menuFields = ["menu_entries", "slug"]
     const menu = getAll(menuType, menuFields)
-    const entity = getBySlug(contentType, params.slug, contentTypeFields)
+    const entity = getBySlug("pages", params.slug, contentTypeFields)
     entity.menu = menu
+
     return {
         props: {
             entity,

@@ -10,11 +10,14 @@ const linkDefault =
     "text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
 
 export default function MenuMobile({
+    nav = false,
+    logo = false,
     menu_name = "",
     menu = [],
     showMenu,
     setShowMenu,
 }) {
+    if (!nav) return null
     return (
         <>
             {/* Off-canvas menu for mobile, show/hide based on off-canvas menu state. */}
@@ -53,7 +56,7 @@ export default function MenuMobile({
                         </div>
 
                         <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                            <LogoDesktop />
+                            <LogoDesktop logo={logo} />
 
                             <nav aria-label="Sidebar" className="mt-5">
                                 <div className="px-2 space-y-1">

@@ -1,4 +1,5 @@
-export default function Main({ children }) {
+export default function Main({ main, children }) {
+    if (!main) return null
     return (
         <>
             <main
