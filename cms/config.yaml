@@ -83,15 +83,27 @@ collections:
                         default: 80
                         required: true
                       - name: logo_classname
-                        label: Logo Container Tailwind Class
+                        label: Logo Container Tailwind Class Desktop
                         widget: string
                         default: relative flex flex-col w-48 h-10 mt-4 mb-10
                       - name: image_classname
-                        label: Image Tailwind Class
+                        label: Image Tailwind Class Desktop
                         widget: string
                         default:
                       - name: text_classname
-                        label: Text Tailwind Class
+                        label: Text Tailwind Class Desktop
+                        widget: string
+                        default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
+                      - name: logo_classname_mobile
+                        label: Logo Container Tailwind Class Mobile
+                        widget: string
+                        default: relative flex flex-col w-48 h-10 mt-4 mb-10
+                      - name: image_classname_mobile
+                        label: Image Tailwind Class Mobile
+                        widget: string
+                        default:
+                      - name: text_classname_mobile
+                        label: Text Tailwind Class Mobile
                         widget: string
                         default: absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase
                         # --- P O S T   S E T T I N G S ---
@@ -233,6 +245,45 @@ collections:
                   value_field: "{{slug}}"
                   search_fields: ["name"]
                   display_fields: ["name"]
+          - name: layout
+            label: Layout
+            widget: object
+            fields:
+                - name: header
+                  label: Show Header
+                  widget: boolean
+                  default: true
+                  required: false
+                - name: logo
+                  label: Show Logo
+                  widget: boolean
+                  default: true
+                  required: false
+                - name: nav
+                  label: Show Navigation
+                  widget: boolean
+                  default: true
+                  required: false
+                - name: main
+                  label: Show Main Area
+                  widget: boolean
+                  default: true
+                  required: false
+                - name: aside
+                  label: Show Aside Area
+                  widget: boolean
+                  default: false
+                  required: false
+                - name: article
+                  label: Show Article Area
+                  widget: boolean
+                  default: true
+                  required: false
+                - name: footer
+                  label: Show Footer
+                  widget: boolean
+                  default: true
+                  required: false
           - name: published
             label: published
             required: false
@@ -277,9 +328,9 @@ collections:
             label: Title
             widget: string
             required: true
-          - label: Site Menu
-            label_singular: Menu
-            name: menu
+          - label: Menu Entries
+            label_singular: Menu Entries
+            name: menu_entries
             widget: list
             fields:
                 - label: Label

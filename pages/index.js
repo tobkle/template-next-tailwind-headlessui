@@ -14,6 +14,7 @@ export default function Page(props) {
                 main={true}
                 aside={true}
                 footer={true}
+                entity={entity}
                 menu={menu}
             >
                 {[0, 1, 2, 3, 4, 5].map((a, i) => (
@@ -74,7 +75,7 @@ export async function getStaticProps({ params }) {
     const getAll = require("lib/api").getAll
     const getBySlug = require("lib/api").getBySlug
     const menuType = "menu"
-    const menuFields = ["menu", "slug"]
+    const menuFields = ["menu_entries", "slug"]
     const menu = getAll(menuType, menuFields)
     const entity = getBySlug(contentType, "home", contentTypeFields)
     return {

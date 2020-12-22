@@ -9,7 +9,12 @@ const linkCurrent =
 const linkDefault =
     "text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
 
-export default function MenuMobile({ menu = [], showMenu, setShowMenu }) {
+export default function MenuMobile({
+    menu_name = "",
+    menu = [],
+    showMenu,
+    setShowMenu,
+}) {
     return (
         <>
             {/* Off-canvas menu for mobile, show/hide based on off-canvas menu state. */}
@@ -53,6 +58,7 @@ export default function MenuMobile({ menu = [], showMenu, setShowMenu }) {
                             <nav aria-label="Sidebar" className="mt-5">
                                 <div className="px-2 space-y-1">
                                     <MenuItems
+                                        menu_name={menu_name}
                                         menu={menu}
                                         linkCurrent={linkCurrent}
                                         linkDefault={linkDefault}

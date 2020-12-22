@@ -2,7 +2,7 @@ import Image from "components/image"
 import Settings from "content/settings/settings.md"
 // import Element from "content/elements/logo.md"
 
-export default function Logo({ logo = true }) {
+export default function LogoDesktop({ logo = true, showMenu }) {
     const logoSettings = Settings.data.logo
     if (!logo) return null
     let Text = () => null
@@ -41,8 +41,8 @@ export default function Logo({ logo = true }) {
     )
 }
 
-function createMarkup(element) {
-    return {
-        __html: element,
-    }
-}
+// function createMarkup(element) {
+//     return {
+//         __html: element,
+//     }
+// }

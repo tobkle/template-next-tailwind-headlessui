@@ -1,19 +1,21 @@
 import Link from "next/link"
 import cn from "classnames"
 import Icon from "components/icon"
+import { getMenuEntries } from "lib/helpers"
 
 const iconCurrent = "text-gray-500 mr-3 h-6 w-6"
 const iconDefault = "text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6"
 
 export default function MenuItems({
-    menu,
+    menu_name = "",
+    menu = [],
     linkCurrent = "",
     linkDefault = "",
 }) {
-    const { appmenu = [] } = menu.filter((m) => Object.keys(m).length > 0).pop()
+    const menu_entries = getMenuEntries(menu_name, menu)
     return (
         <>
-            {appmenu.map(({ slug, label, iconname, iconstyle }, i) => (
+            {menu_entries.map(({ slug, label, iconname, iconstyle }, i) => (
                 <Link key={slug} href={slug}>
                     <a
                         className={cn({

@@ -7,6 +7,7 @@ export default function LinkInternalExternal({
     index = 0,
     active = "",
     passive = "",
+    className = "",
 }) {
     try {
         const { asPath = "" } = useRouter()
@@ -14,20 +15,26 @@ export default function LinkInternalExternal({
 
         if (href.startsWith("http")) {
             return (
-                <a key={index} href={href} className={passive}>
-                    {label}
-                </a>
+                <span className={className}>
+                    <a key={index} href={href} className={passive}>
+                        {label}
+                    </a>
+                </span>
             )
         } else {
             return (
-                <Link key={index} href={href}>
-                    <a
-                        key={index}
-                        className={href === asPath ? `${active}` : `${passive}`}
-                    >
-                        {label}
-                    </a>
-                </Link>
+                <span className={className}>
+                    <Link key={index} href={href}>
+                        <a
+                            key={index}
+                            className={
+                                href === asPath ? `${active}` : `${passive}`
+                            }
+                        >
+                            {label}
+                        </a>
+                    </Link>
+                </span>
             )
         }
     } catch (err) {
