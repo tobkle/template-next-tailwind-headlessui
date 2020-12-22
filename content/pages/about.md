@@ -1,7 +1,7 @@
 ---
 slug: about
 title: About
-main_menu: app_menu
+main_menu: site_menu
 footer_menu: footer_menu
 sections:
   - section: header-section
