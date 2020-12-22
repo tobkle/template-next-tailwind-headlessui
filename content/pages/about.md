@@ -12,7 +12,7 @@ layout:
   main: true
   article: true
   footer: true
-  page_layout: app
+  page_layout: site
 published: true
 date: December 19, 2020 9:18 PM
 date_to: December 31, 2030 12:00 AM
