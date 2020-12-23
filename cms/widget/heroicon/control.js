@@ -12,9 +12,11 @@ const HeroIcon = React.forwardRef(
         }
 
         return (
-            <div className="flex flex-auto space-between align-center justify-center">
+            <div
+                ref={ref}
+                className="flex flex-auto space-between align-center justify-center"
+            >
                 <select
-                    ref={ref}
                     value={value}
                     onChange={handleChange}
                     id={forID}

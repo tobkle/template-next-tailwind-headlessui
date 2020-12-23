@@ -8,7 +8,7 @@ const withYaml = require("next-plugin-yaml")
 
 const nextConfig = {
     images: {
-        domains: [],
+        domains: ["images.unsplash.com"],
     },
     webpack: (cfg) => {
         cfg.module.rules.push({

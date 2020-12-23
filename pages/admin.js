@@ -6,6 +6,11 @@ import {
     HeroIconPreview,
     HeroIconSchema,
 } from "cms/widget/heroicon"
+import {
+    OnlineMediaControl,
+    OnlineMediaPreview,
+    OnlineMediaSchema,
+} from "cms/widget/online_media"
 import ElementPreview from "cms/preview/element-preview"
 
 export default function AdminPage() {
@@ -34,6 +39,12 @@ export default function AdminPage() {
                     HeroIconControl,
                     HeroIconPreview,
                     HeroIconSchema
+                )
+                window.cms.registerWidget(
+                    "online_media",
+                    OnlineMediaControl,
+                    OnlineMediaPreview,
+                    OnlineMediaSchema
                 )
 
                 window.cms.registerPreviewTemplate("elements", ElementPreview)

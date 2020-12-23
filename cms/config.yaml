@@ -439,7 +439,7 @@ collections:
                   required: true
                 - label: HeroIcon
                   name: iconname
-                  widget: heroicon
+                  widget: "heroicon"
 
     #   P O S T S  -----------
     - name: posts
@@ -473,6 +473,10 @@ collections:
       fields:
           - { label: "Title", name: "title", widget: "string", tagname: "h1" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: Online Media
+            name: online_media
+            widget: "online_media"
+            hint: Search online for images
           - label: "Cover Image"
             name: "image"
             widget: "image"
