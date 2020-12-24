@@ -7,7 +7,7 @@ content:
       {headerText}
     </h1>
 
-    <Icon icon
+    <Icon iconname="Newspaper" iconstyle="outline"/>
       
     # GFM
 
