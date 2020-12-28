@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useCallback, useState, useEffect } from "react"
 import Editor from "components/editor"
 
 const EditorControl = React.forwardRef(
@@ -17,7 +17,7 @@ const EditorControl = React.forwardRef(
                 <input
                     id="editor"
                     type="textarea"
-                    className={classNameWrapper}
+                    className="hidden"
                     value={value}
                     onChange={(e) => transfer(e.target.value)}
                 />
@@ -25,6 +25,9 @@ const EditorControl = React.forwardRef(
                 <button
                     onClick={(e) => setOpen(true)}
                     className={classNameWrapper}
+                    style={{
+                        backgroundColor: "rgb(219, 234, 254)",
+                    }}
                 >
                     Open Editor
                 </button>
@@ -50,28 +53,46 @@ const initialValue = [
 
 function EditorContainer({ open, setOpen, data, transfer }) {
     if (!open) return null
-    const [value, setValue] = useState()
+    const key = new URL(location.href).hash
+    const [value, setRawValue] = useState()
+
+    const getValue = () => {
+        let storageData = localStorage.getItem(key)
+        if (data && storageData && data !== storageData) {
+            const answer = confirm(
+                "Different Content found in Browser Cache. Loading Content from Browser Cache instead?"
+            )
+            if (!answer) storageData = data
+        } else {
+            storageData = data
+        }
+        if (!storageData) {
+            storageData = "[{ children: [{ text: '' }] }]"
+        }
+        storageData = JSON.parse(storageData)
+        return storageData
+    }
+
+    const setValue = (newValue) => {
+        setRawValue(newValue)
+        localStorage.setItem(key, JSON.stringify(newValue))
+    }
+
+    const reactOnKey = (e) => {
+        let isEscape = false
+        if ("key" in e) {
+            isEscape = e.key === "Escape" || e.key === "Esc"
+        } else {
+            isEscape = e.keyCode === 27
+        }
+        if (isEscape) setOpen(false)
+    }
 
     useEffect(() => {
-        // check, if we receive a valid editor text node data from the cms
-        // if so, take that data,
-        // if not initialize control with initial data
-        if (data && data.length > 0) {
-            const content = JSON.parse(data)
-            if (
-                !content ||
-                content.length < 1 ||
-                !content[0].children ||
-                content[0].children.length < 1
-            ) {
-                setValue(initialValue)
-            } else {
-                setValue(content)
-            }
-        } else {
-            setValue(initialValue)
-        }
-    }, [data])
+        setRawValue(getValue())
+        addEventListener("keydown", reactOnKey)
+        return () => removeEventListener("keydown", reactOnKey)
+    }, [])
 
     return (
         <div className="fixed inset-0 bg-gray-100 z-300 shadow-lg rounded-lg overflow-hidden">
@@ -92,6 +113,14 @@ function EditorContainer({ open, setOpen, data, transfer }) {
                             className="mt-3 mr-3 rounded-md shadow sm:mt-0  overflow-hidden flex items-center justify-center px-6 py-1 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-150 ease-in-out "
                         >
                             Save
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                setOpen(false)
+                            }}
+                            className="mt-3 mr-3 rounded-md shadow sm:mt-0 overflow-hidden flex items-center justify-center px-6 py-1 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo transition duration-150 ease-in-out "
+                        >
+                            Cancel
                         </button>
                     </div>
                 </div>

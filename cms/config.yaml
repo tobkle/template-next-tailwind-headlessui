@@ -473,6 +473,9 @@ collections:
       fields:
           - { label: "Title", name: "title", widget: "string", tagname: "h1" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          #         - label: Inline-Editor
+          #           name: inline_editor
+          #           widget: markdown
           - label: Editor
             name: editor
             widget: "editor"
@@ -481,23 +484,23 @@ collections:
             name: online_media
             widget: "online_media"
             hint: Search online for images
-          - label: "Cover Image"
-            name: "image"
-            widget: "image"
-            required: false
-          - label: "Cover Image Description"
-            name: "image_alt"
-            widget: "string"
-            required: true
-            hint: Will be visible to users
-          - label: Content
-            name: body
-            widget: markdown
-            hint: Main content goes here
-          - label: Excerpt
-            name: excerpt
-            widget: markdown
-            required: false
+          #         - label: "Cover Image"
+          #           name: "image"
+          #           widget: "image"
+          #           required: false
+          #         - label: "Cover Image Description"
+          #           name: "image_alt"
+          #           widget: "string"
+          #           required: true
+          #           hint: Will be visible to users
+          #         - label: Content
+          #           name: body
+          #           widget: markdown
+          #           hint: Main content goes here
+          #         - label: Excerpt
+          #           name: excerpt
+          #           widget: markdown
+          #           required: false
           - name: author
             label: Author
             widget: relation

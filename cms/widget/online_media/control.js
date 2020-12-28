@@ -38,7 +38,7 @@ const OnlineMediaControl = React.forwardRef(
                 <input
                     id="unsplash_image_url"
                     type="text"
-                    className={classNameWrapper}
+                    className="hidden"
                     value={value}
                     onChange={(e) => transferImageUrl(e.target.value)}
                 />
@@ -46,6 +46,9 @@ const OnlineMediaControl = React.forwardRef(
                 <button
                     onClick={(e) => setOpenMediaSelector(true)}
                     className={classNameWrapper}
+                    style={{
+                        backgroundColor: "rgb(219, 234, 254)",
+                    }}
                 >
                     Select Image
                 </button>

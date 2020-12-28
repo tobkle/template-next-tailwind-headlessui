@@ -1,9 +1,11 @@
 import Layout from "layouts/site"
 import Image from "components/image"
 import DebugData from "components/debug-data"
+import serialize from "lib/serialize"
 
 export default function Post(props) {
     const { entity, aside_content } = props
+    const html = serialize(entity.editor).join("")
 
     const {
         title = "",
@@ -61,7 +63,8 @@ export default function Post(props) {
                     </div>
 
                     {/* Content */}
-                    {content}
+                    {/* {content} */}
+                    <div dangerouslySetInnerHTML={{ __html: html }} />
                 </div>
             </Layout>
 
@@ -89,6 +92,7 @@ export async function getStaticProps({ params }) {
     const getBySlug = require("lib/api").getBySlug
     const getAsideContent = require("lib/api").getAsideContent
     const getFieldsFromConfig = require("lib/api").getFieldsFromConfig
+    // const serialize = require("lib/serialize").serialize
 
     const contentTypeFields = getFieldsFromConfig("posts")
     const settings = getAll("settings", ["general", "posts", "layout"]).pop()
@@ -101,10 +105,13 @@ export async function getStaticProps({ params }) {
     entity.menu = menu
 
     const aside_content = getAsideContent()
+    console.log(JSON.stringify(JSON.parse(entity.editor), null, 2))
+    // const html = serialize(JSON.parse(entity.editor)).join("")
     return {
         props: {
             entity,
             aside_content,
+            // html,
         },
     }
 }
