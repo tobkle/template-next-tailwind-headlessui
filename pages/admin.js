@@ -11,6 +11,7 @@ import {
     OnlineMediaPreview,
     OnlineMediaSchema,
 } from "cms/widget/online_media"
+import { EditorControl, EditorPreview, EditorSchema } from "cms/widget/editor"
 import ElementPreview from "cms/preview/element-preview"
 
 export default function AdminPage() {
@@ -31,6 +32,9 @@ export default function AdminPage() {
 
                 // use the following css for the previews in the cms
                 // generate the css bundle with `npm run buildcms`
+                window.cms.registerPreviewStyle(
+                    "https://fonts.googleapis.com/icon?family=Material+Icons"
+                )
                 window.cms.registerPreviewStyle("/css/tailwindCMS.css")
 
                 // Custom Widgets
@@ -45,6 +49,12 @@ export default function AdminPage() {
                     OnlineMediaControl,
                     OnlineMediaPreview,
                     OnlineMediaSchema
+                )
+                window.cms.registerWidget(
+                    "editor",
+                    EditorControl,
+                    EditorPreview,
+                    EditorSchema
                 )
 
                 window.cms.registerPreviewTemplate("elements", ElementPreview)

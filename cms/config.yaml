@@ -473,6 +473,10 @@ collections:
       fields:
           - { label: "Title", name: "title", widget: "string", tagname: "h1" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: Editor
+            name: editor
+            widget: "editor"
+            hint: Edit Post
           - label: Online Media
             name: online_media
             widget: "online_media"

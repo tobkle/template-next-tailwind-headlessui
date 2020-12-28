@@ -1,21 +1,16 @@
 const withPlugins = require("next-compose-plugins")
 const withYaml = require("next-plugin-yaml")
-// const withMDX = require("@next/mdx")({
-//     extension: /\.mdx$/,
-// })({
-//     pageExtensions: ["js", "jsx", "mdx"],
-// })
 
 const nextConfig = {
     images: {
-        domains: ["images.unsplash.com"],
+        domains: ["images.unsplash.com", "source.unsplash.com"],
     },
     webpack: (cfg) => {
+        cfg.node = { fs: "empty" } // https://github.com/webpack-contrib/css-loader/issues/447
         cfg.module.rules.push({
             test: /\.md$/,
             use: [{ loader: "gray-matter-loader" }],
         })
-        // console.log(JSON.stringify(cfg, null, 2))
         return cfg
     },
 }

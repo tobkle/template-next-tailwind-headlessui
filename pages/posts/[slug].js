@@ -9,6 +9,7 @@ export default function Post(props) {
         title = "",
         content = "",
         image = "",
+        online_media,
         date = new Date().toLocaleDateString(),
         author = [],
         tags = [],
@@ -20,7 +21,7 @@ export default function Post(props) {
                 <div className="relative prose flex flex-col mx-auto pb-20">
                     {/* Cover Image */}
                     <Image
-                        src={image}
+                        src={online_media}
                         alt={title}
                         layout="responsive"
                         width={1000}
