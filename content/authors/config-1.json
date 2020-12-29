@@ -1,0 +1,39 @@
+{
+    "name": "author",
+    "label": "└Authors",
+    "label_singular": "Author",
+    "description": "Authors of a Post",
+    "folder": "/content/authors",
+    "create": true,
+    "delete": false,
+    "editor": {
+        "preview": false
+    },
+    "slug": "{{fields.name}}",
+    "fields": [
+        {
+            "name": "name",
+            "label": "Name",
+            "widget": "string",
+            "required": true
+        },
+        {
+            "name": "slug",
+            "label": "Url",
+            "widget": "string",
+            "required": true
+        },
+        {
+            "name": "picture",
+            "label": "Author Image used as Avatar",
+            "widget": "image",
+            "required": false
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "widget": "string",
+            "required": false
+        }
+    ]
+}

@@ -1,0 +1,159 @@
+{
+    "name": "pages",
+    "label": "Pages",
+    "label_singular": "Pages",
+    "description": "Maintain Pages here",
+    "folder": "/content/pages",
+    "extension": "md",
+    "format": "frontmatter",
+    "create": true,
+    "delete": true,
+    "identifier_field": "slug",
+    "slug": "{{slug}}",
+    "summary": "{{slug}}",
+    "fields": [
+        {
+            "name": "slug",
+            "label": "Slug",
+            "widget": "string"
+        },
+        {
+            "name": "title",
+            "label": "Title",
+            "widget": "string"
+        },
+        {
+            "name": "main_menu",
+            "label": "Menu Header",
+            "widget": "relation",
+            "collection": "menu",
+            "value_field": "{{slug}}",
+            "search_fields": ["title"],
+            "display_fields": ["title"]
+        },
+        {
+            "name": "footer_menu",
+            "label": "Menu Footer",
+            "widget": "relation",
+            "collection": "menu",
+            "value_field": "{{slug}}",
+            "search_fields": ["title"],
+            "display_fields": ["title"]
+        },
+        {
+            "name": "sections",
+            "label": "Sections",
+            "label_singular": "Section",
+            "widget": "list",
+            "allow_add": true,
+            "collapsed": false,
+            "fields": [
+                {
+                    "name": "section",
+                    "label": "Section",
+                    "widget": "relation",
+                    "collection": "sections",
+                    "value_field": "{{slug}}",
+                    "search_fields": ["name"],
+                    "display_fields": ["name"]
+                }
+            ]
+        },
+        {
+            "name": "layout",
+            "label": "Layout",
+            "widget": "object",
+            "fields": [
+                {
+                    "name": "page_layout",
+                    "label": "Choose Page Layout",
+                    "widget": "select",
+                    "options": ["app", "site"],
+                    "default": ["site"],
+                    "required": true,
+                    "hint": "Have a look into folder /layouts"
+                },
+                {
+                    "name": "header",
+                    "label": "Show Header",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                },
+                {
+                    "name": "logo",
+                    "label": "Show Logo",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                },
+                {
+                    "name": "nav",
+                    "label": "Show Navigation",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                },
+                {
+                    "name": "main",
+                    "label": "Show Main Area",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                },
+                {
+                    "name": "aside",
+                    "label": "Show Aside Area",
+                    "widget": "boolean",
+                    "default": false,
+                    "required": false
+                },
+                {
+                    "name": "article",
+                    "label": "Show Article Area",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                },
+                {
+                    "name": "footer",
+                    "label": "Show Footer",
+                    "widget": "boolean",
+                    "default": true,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "name": "published",
+            "label": "published",
+            "required": false,
+            "widget": "boolean",
+            "hint": "",
+            "default": true
+        },
+        {
+            "name": "date",
+            "label": "published from date",
+            "widget": "datetime",
+            "format": "LLL",
+            "time_format": "HH:mm",
+            "date_format": "DD.MM.YYYY",
+            "required": true,
+            "hint": "",
+            "picker_utc": false
+        },
+        {
+            "name": "date_to",
+            "label": "published to date",
+            "widget": "datetime",
+            "format": "LLL",
+            "time_format": "HH:mm",
+            "date_format": "DD.MM.YYYY",
+            "required": true,
+            "hint": "",
+            "default": "December 31, 2030 12:00 AM",
+            "picker_utc": false
+        }
+    ]
+}

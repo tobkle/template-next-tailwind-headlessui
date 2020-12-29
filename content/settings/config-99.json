@@ -1,0 +1,279 @@
+{
+    "name": "settings",
+    "label": "Settings",
+    "description": "Maintain Settings here",
+    "delete": false,
+    "editor": {
+        "preview": false
+    },
+    "files": [
+        {
+            "name": "general",
+            "label": "Site Settings",
+            "file": "/content/settings/settings.md",
+            "preview": false,
+            "fields": [
+                {
+                    "name": "site_title",
+                    "label": "Site Name",
+                    "widget": "string"
+                },
+                {
+                    "name": "base_url",
+                    "label": "Base Url",
+                    "widget": "string"
+                },
+                {
+                    "name": "logo",
+                    "label": "Logo",
+                    "widget": "object",
+                    "fields": [
+                        {
+                            "name": "imageinlogo",
+                            "label": "Use image in Logo",
+                            "widget": "boolean",
+                            "default": true,
+                            "required": false
+                        },
+                        {
+                            "name": "textinlogo",
+                            "label": "Use Text in Logo",
+                            "widget": "boolean",
+                            "default": true,
+                            "required": false
+                        },
+                        {
+                            "name": "text",
+                            "label": "Text Logo",
+                            "widget": "string",
+                            "default": "Example Inc.",
+                            "required": false
+                        },
+                        {
+                            "name": "image",
+                            "label": "Image",
+                            "widget": "image",
+                            "required": false
+                        },
+                        {
+                            "name": "alt",
+                            "label": "Image Text",
+                            "widget": "string",
+                            "default": "Logo",
+                            "required": true
+                        },
+                        {
+                            "name": "layout",
+                            "label": "Image Layout",
+                            "widget": "select",
+                            "multiple": false,
+                            "options": [
+                                "fill",
+                                "responsive",
+                                "fixed",
+                                "intrinsic"
+                            ],
+                            "default": ["responsive"]
+                        },
+                        {
+                            "name": "width",
+                            "label": "Width",
+                            "widget": "number",
+                            "min": 0,
+                            "max": 1920,
+                            "default": 100,
+                            "required": true
+                        },
+                        {
+                            "name": "height",
+                            "label": "height",
+                            "widget": "number",
+                            "min": 0,
+                            "max": 1920,
+                            "default": 80,
+                            "required": true
+                        },
+                        {
+                            "name": "logo_classname",
+                            "label": "Logo Container Tailwind Class Desktop",
+                            "widget": "string",
+                            "default": "relative flex flex-col w-48 h-10 mt-4 mb-10",
+                            "required": false
+                        },
+                        {
+                            "name": "image_classname",
+                            "label": "Image Tailwind Class Desktop",
+                            "widget": "string",
+                            "default": null,
+                            "required": false
+                        },
+                        {
+                            "name": "text_classname",
+                            "label": "Text Tailwind Class Desktop",
+                            "widget": "string",
+                            "default": "absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase",
+                            "required": false
+                        },
+                        {
+                            "name": "logo_classname_mobile",
+                            "label": "Logo Container Tailwind Class Mobile",
+                            "widget": "string",
+                            "default": "relative flex flex-col w-48 h-10 mt-4 mb-10",
+                            "required": false
+                        },
+                        {
+                            "name": "image_classname_mobile",
+                            "label": "Image Tailwind Class Mobile",
+                            "widget": "string",
+                            "default": null,
+                            "required": false
+                        },
+                        {
+                            "name": "text_classname_mobile",
+                            "label": "Text Tailwind Class Mobile",
+                            "widget": "string",
+                            "default": "absolute top-11 left-1 text-gray-600 text-md font-semibold leading-none uppercase",
+                            "required": false
+                        }
+                    ]
+                },
+                {
+                    "name": "posts",
+                    "label": "Post Settings",
+                    "widget": "object",
+                    "fields": [
+                        {
+                            "name": "title",
+                            "label": "Page Titel for Posts",
+                            "widget": "string",
+                            "required": true,
+                            "default": "Blog"
+                        },
+                        {
+                            "name": "front_limit",
+                            "label": "Number of posts on frontpage",
+                            "widget": "number",
+                            "min": 1,
+                            "max": 10
+                        },
+                        {
+                            "name": "author",
+                            "label": "Author",
+                            "widget": "relation",
+                            "collection": "author",
+                            "search_fields": ["name"],
+                            "display_fields": ["name"],
+                            "value_field": "name",
+                            "required": true,
+                            "hint": "",
+                            "multiple": true,
+                            "options_length": 20
+                        },
+                        {
+                            "name": "main_menu",
+                            "label": "Menu Header",
+                            "widget": "relation",
+                            "collection": "menu",
+                            "value_field": "{{slug}}",
+                            "search_fields": ["title"],
+                            "display_fields": ["title"]
+                        },
+                        {
+                            "name": "footer_menu",
+                            "label": "Menu Footer",
+                            "widget": "relation",
+                            "collection": "menu",
+                            "value_field": "{{slug}}",
+                            "search_fields": ["title"],
+                            "display_fields": ["title"]
+                        },
+                        {
+                            "name": "sections",
+                            "label": "Sections",
+                            "label_singular": "Section",
+                            "widget": "list",
+                            "allow_add": true,
+                            "collapsed": false,
+                            "fields": [
+                                {
+                                    "name": "section",
+                                    "label": "Section",
+                                    "widget": "relation",
+                                    "collection": "sections",
+                                    "value_field": "{{slug}}",
+                                    "search_fields": ["name"],
+                                    "display_fields": ["name"]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "layout",
+                            "label": "Layout",
+                            "widget": "object",
+                            "fields": [
+                                {
+                                    "name": "page_layout",
+                                    "label": "Choose Page Layout",
+                                    "widget": "select",
+                                    "options": ["app", "site"],
+                                    "default": ["site"],
+                                    "required": true,
+                                    "hint": "Have a look into folder /layouts"
+                                },
+                                {
+                                    "name": "header",
+                                    "label": "Show Header",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                },
+                                {
+                                    "name": "logo",
+                                    "label": "Show Logo",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                },
+                                {
+                                    "name": "nav",
+                                    "label": "Show Navigation",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                },
+                                {
+                                    "name": "main",
+                                    "label": "Show Main Area",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                },
+                                {
+                                    "name": "aside",
+                                    "label": "Show Aside Area",
+                                    "widget": "boolean",
+                                    "default": false,
+                                    "required": false
+                                },
+                                {
+                                    "name": "article",
+                                    "label": "Show Article Area",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                },
+                                {
+                                    "name": "footer",
+                                    "label": "Show Footer",
+                                    "widget": "boolean",
+                                    "default": true,
+                                    "required": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

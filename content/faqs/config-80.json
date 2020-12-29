@@ -1,0 +1,19 @@
+{
+    "name": "faq",
+    "label": "FAQ",
+    "folder": "/content/faqs",
+    "create": true,
+    "fields": [
+        {
+            "label": "Question",
+            "name": "title",
+            "widget": "string",
+            "tagname": "h1"
+        },
+        {
+            "label": "Answer",
+            "name": "body",
+            "widget": "markdown"
+        }
+    ]
+}

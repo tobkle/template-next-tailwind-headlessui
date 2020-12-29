@@ -1,0 +1,127 @@
+{
+    "name": "posts",
+    "label": "Posts",
+    "label_singular": "Post",
+    "description": "Maintain Posts here",
+    "folder": "/content/posts",
+    "extension": "md",
+    "format": "frontmatter",
+    "create": true,
+    "delete": true,
+    "slug": "{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}-{{author}}",
+    "identifier_field": "slug",
+    "summary": "{{year}}-{{month}}-{{day}} | {{title}}",
+    "view_filters": [
+        {
+            "label": "Posts With Index",
+            "field": "title",
+            "pattern": "This is post #"
+        },
+        {
+            "label": "Posts Without Index",
+            "field": "title",
+            "pattern": "front matter post"
+        },
+        {
+            "label": "Drafts",
+            "field": "draft",
+            "pattern": true
+        }
+    ],
+    "view_groups": [
+        {
+            "label": "Year",
+            "field": "date",
+            "pattern": "\\d{4}"
+        },
+        {
+            "label": "Drafts",
+            "field": "draft"
+        }
+    ],
+    "fields": [
+        {
+            "label": "Title",
+            "name": "title",
+            "widget": "string",
+            "tagname": "h1"
+        },
+        {
+            "label": "Draft",
+            "name": "draft",
+            "widget": "boolean",
+            "default": false
+        },
+        {
+            "label": "Editor",
+            "name": "editor",
+            "widget": "editor",
+            "hint": "Edit Post",
+            "required": false
+        },
+        {
+            "label": "Online Media",
+            "name": "online_media",
+            "widget": "online_media",
+            "required": false,
+            "hint": "Search online for images"
+        },
+        {
+            "name": "author",
+            "label": "Author",
+            "widget": "relation",
+            "collection": "author",
+            "search_fields": ["name"],
+            "display_fields": ["name"],
+            "value_field": "name",
+            "required": true,
+            "hint": "",
+            "multiple": true,
+            "options_length": 20
+        },
+        {
+            "name": "tags",
+            "label": "Tags",
+            "widget": "relation",
+            "collection": "tag",
+            "search_fields": ["tag"],
+            "display_fields": ["tag"],
+            "value_field": "tag",
+            "required": true,
+            "hint": "",
+            "multiple": true,
+            "options_length": 20
+        },
+        {
+            "name": "published",
+            "label": "published",
+            "required": false,
+            "widget": "boolean",
+            "hint": "",
+            "default": true
+        },
+        {
+            "name": "date",
+            "label": "published from date",
+            "widget": "datetime",
+            "format": "LLL",
+            "time_format": "HH:mm",
+            "date_format": "DD.MM.YYYY",
+            "required": true,
+            "hint": "",
+            "picker_utc": false
+        },
+        {
+            "name": "date_to",
+            "label": "published to date",
+            "widget": "datetime",
+            "format": "LLL",
+            "time_format": "HH:mm",
+            "date_format": "DD.MM.YYYY",
+            "required": true,
+            "hint": "",
+            "default": "December 31, 2030 12:00 AM",
+            "picker_utc": false
+        }
+    ]
+}

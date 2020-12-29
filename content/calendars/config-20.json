@@ -1,0 +1,65 @@
+{
+    "name": "calendars",
+    "label": "Calendars",
+    "label_singular": "Event",
+    "description": "Event Calendar",
+    "folder": "/content/calendars",
+    "slug": "{{fields.calendar}}",
+    "summary": "{{fields.calendar}}",
+    "create": true,
+    "delete": true,
+    "editor": {
+        "preview": false
+    },
+    "fields": [
+        {
+            "label": "Calendar",
+            "name": "calendar",
+            "widget": "string",
+            "required": true
+        },
+        {
+            "name": "dates",
+            "label": "Events",
+            "label_singular": "Event",
+            "widget": "list",
+            "collapsed": true,
+            "summary": "{{fields.date}} - {{fields.event}} - {{fields.group}}",
+            "allow_add": true,
+            "fields": [
+                {
+                    "name": "date",
+                    "label": "Event",
+                    "widget": "datetime",
+                    "format": "DD.MM.YYYY",
+                    "date_format": "DD.MM.YYYY",
+                    "time_format": "HH:mm",
+                    "required": true,
+                    "hint": "",
+                    "default": "",
+                    "picker_utc": false
+                },
+                {
+                    "name": "event",
+                    "label": "Event Description",
+                    "widget": "string",
+                    "required": false
+                },
+                {
+                    "name": "group",
+                    "label": "Group of Events",
+                    "widget": "relation",
+                    "collection": "group",
+                    "search_fields": ["name"],
+                    "display_fields": ["name"],
+                    "value_field": "name",
+                    "required": true,
+                    "hint": "",
+                    "default": "",
+                    "multiple": true,
+                    "options_length": 20
+                }
+            ]
+        }
+    ]
+}

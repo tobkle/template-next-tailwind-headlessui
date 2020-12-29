@@ -28,7 +28,7 @@ export default function EditorPage({ value, setValue }) {
 
     return (
         <>
-            <div className="relative flex flex-col h-screen">
+            <div className="relative flex flex-col h-screen items-center">
                 <Slate
                     editor={editor}
                     value={value}
@@ -64,7 +64,7 @@ export default function EditorPage({ value, setValue }) {
                         <VideoButton />
                     </Toolbar>
 
-                    <div className="flex-1 overflow-y-auto p-2">
+                    <div className="flex-1 overflow-y-auto p-2 prose">
                         <Editable
                             renderElement={renderElement}
                             renderLeaf={renderLeaf}

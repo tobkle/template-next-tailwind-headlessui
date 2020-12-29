@@ -1,0 +1,33 @@
+{
+    "name": "group",
+    "label": "└Groups",
+    "label_singular": "Group",
+    "description": "Maintain Event Groups to categorize Events",
+    "folder": "/content/groups",
+    "create": true,
+    "delete": false,
+    "editor": {
+        "preview": false
+    },
+    "slug": "{{fields.name}}",
+    "fields": [
+        {
+            "name": "name",
+            "label": "Name",
+            "widget": "string",
+            "required": true
+        },
+        {
+            "name": "slug",
+            "label": "Url",
+            "widget": "string",
+            "required": true
+        },
+        {
+            "name": "description",
+            "label": "Group Description",
+            "widget": "string",
+            "required": false
+        }
+    ]
+}

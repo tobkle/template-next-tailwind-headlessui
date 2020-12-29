@@ -1,0 +1,28 @@
+{
+    "name": "elements",
+    "label": "Elements",
+    "label_singular": "Element",
+    "description": "Maintain Elements here",
+    "folder": "/content/elements",
+    "extension": "md",
+    "format": "frontmatter",
+    "create": true,
+    "delete": true,
+    "identifier_field": "slug",
+    "slug": "{{fields.name}}",
+    "summary": "{{fields.name}}",
+    "fields": [
+        {
+            "name": "name",
+            "label": "Name",
+            "widget": "string"
+        },
+        {
+            "name": "content",
+            "label": "Content",
+            "widget": "code",
+            "allow_language_selection": true,
+            "default_language": "jsx"
+        }
+    ]
+}

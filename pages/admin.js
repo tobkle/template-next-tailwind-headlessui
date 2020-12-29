@@ -1,6 +1,5 @@
 import React from "react"
 import dynamic from "next/dynamic"
-import config from "cms/config.yaml"
 import {
     HeroIconControl,
     HeroIconPreview,
@@ -13,8 +12,9 @@ import {
 } from "cms/widget/online_media"
 import { EditorControl, EditorPreview, EditorSchema } from "cms/widget/editor"
 import ElementPreview from "cms/preview/element-preview"
+import buildConfig from "cms/build-config"
 
-export default function AdminPage() {
+export default function AdminPage({ config }) {
     const CMS = dynamic(
         () =>
             // load dependencies
@@ -63,4 +63,14 @@ export default function AdminPage() {
     )
 
     return <CMS />
+}
+
+export async function getStaticProps() {
+    const config = buildConfig()
+
+    return {
+        props: {
+            config,
+        },
+    }
 }

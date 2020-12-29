@@ -1,0 +1,21 @@
+{
+    "name": "tag",
+    "label": "└Tags",
+    "label_singular": "Tags",
+    "description": "Tags to collect Posts in Categories",
+    "folder": "/content/tags",
+    "slug": "{{fields.tag}}",
+    "create": true,
+    "delete": false,
+    "editor": {
+        "preview": false
+    },
+    "fields": [
+        {
+            "name": "tag",
+            "label": "Tag",
+            "widget": "string",
+            "required": true
+        }
+    ]
+}

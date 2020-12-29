@@ -45,6 +45,7 @@ const EditorControl = React.forwardRef(
 )
 
 export default EditorControl
+
 const initialValue = [
     {
         children: [{ text: "" }],
@@ -57,20 +58,23 @@ function EditorContainer({ open, setOpen, data, transfer }) {
     const [value, setRawValue] = useState()
 
     const getValue = () => {
-        let storageData = localStorage.getItem(key)
-        if (data && storageData && data !== storageData) {
-            const answer = confirm(
-                "Different Content found in Browser Cache. Loading Content from Browser Cache instead?"
-            )
-            if (!answer) storageData = data
-        } else {
-            storageData = data
+        try {
+            let storageData = localStorage.getItem(key)
+            if (data && storageData && data !== storageData) {
+                const answer = confirm(
+                    "Different Content found in Browser Cache. Loading Content from Browser Cache instead?"
+                )
+                if (!answer) storageData = data
+            } else if (data) {
+                storageData = data
+            }
+            if (!storageData) {
+                return initialValue
+            }
+            return JSON.parse(storageData)
+        } catch (error) {
+            console.error(error)
         }
-        if (!storageData) {
-            storageData = "[{ children: [{ text: '' }] }]"
-        }
-        storageData = JSON.parse(storageData)
-        return storageData
     }
 
     const setValue = (newValue) => {

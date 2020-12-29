@@ -12,7 +12,7 @@ const OnlineMediaPreview = ({
     return (
         <>
             <h1 className="text-2xl semi-bold">Online Media</h1>
-            <p className="relative w-full h-96">
+            <div className="relative w-full h-96">
                 <Image
                     src={value}
                     alt="online Image"
@@ -20,7 +20,7 @@ const OnlineMediaPreview = ({
                     objectFit="cover"
                     objectPosition="center center"
                 />
-            </p>
+            </div>
         </>
     )
 }

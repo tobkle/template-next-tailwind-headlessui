@@ -1,0 +1,52 @@
+{
+    "name": "sections",
+    "label": "Sections",
+    "label_singular": "Section",
+    "description": "Maintain Sections here",
+    "folder": "/content/sections",
+    "extension": "md",
+    "format": "frontmatter",
+    "create": true,
+    "delete": true,
+    "identifier_field": "slug",
+    "slug": "{{fields.name}}",
+    "summary": "{{fields.name}}",
+    "fields": [
+        {
+            "name": "name",
+            "label": "Name",
+            "widget": "string"
+        },
+        {
+            "name": "rows",
+            "label": "Rows",
+            "label_singular": "Row",
+            "widget": "list",
+            "collapsed": false,
+            "field": {
+                "name": "columns",
+                "label": "Columns",
+                "label_singular": "Column",
+                "widget": "list",
+                "collapsed": false,
+                "field": {
+                    "name": "blocks",
+                    "label": "Blocks",
+                    "label_singular": "Block",
+                    "widget": "list",
+                    "collapsed": false,
+                    "field": {
+                        "name": "elements",
+                        "label": "Element",
+                        "label_singular": "Element",
+                        "widget": "relation",
+                        "collection": "elements",
+                        "value_field": "{{slug}}",
+                        "search_fields": ["name", "content"],
+                        "display_fields": ["name"]
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -480,9 +480,11 @@ collections:
             name: editor
             widget: "editor"
             hint: Edit Post
+            required: false
           - label: Online Media
             name: online_media
             widget: "online_media"
+            required: false
             hint: Search online for images
           #         - label: "Cover Image"
           #           name: "image"

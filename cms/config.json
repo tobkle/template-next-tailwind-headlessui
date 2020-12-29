@@ -1,0 +1,18 @@
+{
+    "cms_manual_init": true,
+    "backend": {
+        "name": "github",
+        "repo": "tobkle/template-next-tailwind-headlessui",
+        "branch": "main",
+        "squash_merges": true
+    },
+    "locale": "de",
+    "media_folder": "/public/img",
+    "public_folder": "/img",
+    "slug": {
+        "encoding": "ascii",
+        "clean_accents": true,
+        "sanitize_replacement": "_"
+    },
+    "collections": []
+}
