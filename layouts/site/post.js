@@ -3,6 +3,7 @@ import Serialize from "./serialize"
 
 export default function Post({ content }) {
     const nodes = JSON.parse(decode(content))
+    // console.log(nodes)
     return (
         <>
             {nodes.map((node, index) => (

@@ -22,6 +22,32 @@ export default function Element({ id, node }) {
 
     // return element with its children
     switch (type) {
+        case "align_left":
+            return (
+                <div className="text-left" id={`${id}-${type}`} {...attributes}>
+                    {ResolvedChildren}
+                </div>
+            )
+        case "align_center":
+            return (
+                <div
+                    className="text-center"
+                    id={`${id}-${type}`}
+                    {...attributes}
+                >
+                    {ResolvedChildren}
+                </div>
+            )
+        case "align_right":
+            return (
+                <div
+                    className="text-right"
+                    id={`${id}-${type}`}
+                    {...attributes}
+                >
+                    {ResolvedChildren}
+                </div>
+            )
         case "h1":
             return (
                 <h1 id={`${id}-${type}`} {...attributes}>
