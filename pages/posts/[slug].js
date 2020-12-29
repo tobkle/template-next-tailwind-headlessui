@@ -1,11 +1,12 @@
 import Layout from "layouts/site"
 import Image from "components/image"
 import DebugData from "components/debug-data"
+import { decode } from "js-base64"
 import serialize from "lib/serialize"
 
 export default function Post(props) {
     const { entity, aside_content } = props
-    const html = serialize(entity.editor).join("")
+    const html = serialize(decode(entity.editor)).join("")
 
     const {
         title = "",

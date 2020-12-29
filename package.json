@@ -26,6 +26,7 @@
         "image-extensions": "^1.1.0",
         "is-hotkey": "^0.2.0",
         "is-url": "^1.2.4",
+        "js-base64": "^3.6.0",
         "js-cookie": "^2.2.1",
         "netlify-cms-app": "^2.14.6",
         "netlify-cms-locales": "^1.21.0",

@@ -1,12 +1,23 @@
 import React, { useCallback, useState, useEffect } from "react"
 import Editor from "components/editor"
+import { Base64 } from "js-base64"
 
 const EditorControl = React.forwardRef(
     ({ value, field, forID, classNameWrapper, onChange }, ref) => {
         const [open, setOpen] = useState(false)
 
         const transfer = (content) => {
-            onChange(JSON.stringify(content))
+            onChange(encode(JSON.stringify(content)))
+        }
+
+        const encode = (_data) => {
+            if (_data) return Base64.encode(_data)
+            return _data
+        }
+
+        const decode = (_data) => {
+            if (_data) return Base64.decode(_data)
+            return _data
         }
 
         return (
@@ -35,7 +46,7 @@ const EditorControl = React.forwardRef(
                 <EditorContainer
                     open={open}
                     setOpen={setOpen}
-                    data={value}
+                    data={decode(value)}
                     transfer={transfer}
                     style={{ width: "100%", height: "100%" }}
                 />
