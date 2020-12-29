@@ -58,6 +58,7 @@ export const ImageButton = () => {
         <Button
             onMouseDown={(event) => {
                 event.preventDefault()
+                debugger
                 const url = window.prompt("Enter the URL of the image")
                 if (!url) return
                 insertImage(editor, url)

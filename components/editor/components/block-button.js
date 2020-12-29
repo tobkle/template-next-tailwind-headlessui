@@ -46,6 +46,7 @@ export const BlockButton = ({ format, icon }) => {
             active={isBlockActive(editor, format)}
             onMouseDown={(event) => {
                 event.preventDefault()
+                debugger
                 toggleBlock(editor, format)
             }}
         >

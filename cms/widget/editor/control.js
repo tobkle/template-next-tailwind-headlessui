@@ -46,12 +46,6 @@ const EditorControl = React.forwardRef(
 
 export default EditorControl
 
-const initialValue = [
-    {
-        children: [{ text: "" }],
-    },
-]
-
 function EditorContainer({ open, setOpen, data, transfer }) {
     if (!open) return null
     const key = new URL(location.href).hash
@@ -69,7 +63,7 @@ function EditorContainer({ open, setOpen, data, transfer }) {
                 storageData = data
             }
             if (!storageData) {
-                return initialValue
+                return null
             }
             return JSON.parse(storageData)
         } catch (error) {
@@ -101,8 +95,8 @@ function EditorContainer({ open, setOpen, data, transfer }) {
     return (
         <div className="fixed inset-0 bg-gray-100 z-300 shadow-lg rounded-lg overflow-hidden">
             <div className="relative flex flex-col w-full h-full">
-                <div className="relative z-300 flex-1 mb-3  overflow-y-auto">
-                    <div className=" mx-3 border-solid border-2 border-gray-50 h-full">
+                <div className="relative z-300 flex-1 overflow-y-auto mx-auto">
+                    <div className="h-full overflow-hidden bg-white prose">
                         <Editor value={value} setValue={setValue} />
                     </div>
                 </div>

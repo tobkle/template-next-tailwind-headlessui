@@ -87,6 +87,7 @@ export const LinkButton = () => {
             active={isLinkActive(editor)}
             onMouseDown={(event) => {
                 event.preventDefault()
+                debugger
                 const url = window.prompt("Enter the URL of the link:")
                 if (!url) return
                 insertLink(editor, url)

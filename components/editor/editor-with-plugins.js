@@ -1,5 +1,5 @@
 import "tippy.js/dist/tippy.css"
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { CodeAlt } from "@styled-icons/boxicons-regular/CodeAlt"
 import { CodeBlock } from "@styled-icons/boxicons-regular/CodeBlock"
 import { Subscript, Superscript } from "@styled-icons/foundation"
@@ -97,12 +97,14 @@ import {
     initialValuePasteHtml,
     initialValueSoftBreak,
     initialValueTables,
+    initialValueEmpty,
     options,
     optionsResetBlockTypes,
 } from "./config/initialValues"
 
 const initialValue = [
-    ...initialValueForcedLayout,
+    ...initialValueEmpty,
+    // ...initialValueForcedLayout,
     ...initialValueBasicMarks,
     ...initialValueHighlight,
     ...initialValueBasicElements,
@@ -197,10 +199,12 @@ const withPlugins = [
  * E D I T O R -----------------------------------
  */
 export default function Editor({ value, setValue }) {
-    if (!value) return null
+    useEffect(() => {
+        setValue(initialValue)
+    }, [])
     const onKeyDown = []
-    // const [value, setValue] = useState(initialValue)
     const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
+    if (!value) return null
     return (
         <div className="relative flex flex-col h-screen">
             <Slate
@@ -211,8 +215,7 @@ export default function Editor({ value, setValue }) {
                 }}
             >
                 <Toolbar />
-
-                <div className="flex-1 overflow-y-auto p-2 prose">
+                <div className="flex-1 overflow-y-auto">
                     <EditablePlugins
                         plugins={plugins}
                         onKeyDown={onKeyDown}
@@ -231,7 +234,13 @@ const Toolbar = () => {
     return (
         <>
             <HeadingToolbar
-                styles={{ root: { flexWrap: "wrap", border: "none" } }}
+                styles={{
+                    root: {
+                        flexWrap: "wrap",
+                        border: "none",
+                        backgroundColor: "rgba(243, 244, 246, 1)",
+                    },
+                }}
             >
                 {/* Elements */}
                 <ToolbarElement type={options.h1.type} icon={<LooksOne />} />

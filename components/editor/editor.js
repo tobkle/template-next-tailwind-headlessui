@@ -60,6 +60,19 @@ export default function EditorPage({ value, setValue }) {
                         <BlockButton format="heading-five" icon="looks_5" />
                         <BlockButton format="heading-six" icon="looks_6" />
 
+                        <MarkButton
+                            format="align-left"
+                            icon="format_align_left"
+                        />
+                        <MarkButton
+                            format="align-center"
+                            icon="format_align_center"
+                        />
+                        <MarkButton
+                            format="align-right"
+                            icon="format_align_right"
+                        />
+
                         <ImageButton />
                         <VideoButton />
                     </Toolbar>

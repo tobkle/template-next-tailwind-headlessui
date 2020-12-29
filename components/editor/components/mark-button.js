@@ -24,6 +24,7 @@ export const MarkButton = ({ format, icon }) => {
             active={isMarkActive(editor, format)}
             onMouseDown={(event) => {
                 event.preventDefault()
+                debugger
                 toggleMark(editor, format)
             }}
         >

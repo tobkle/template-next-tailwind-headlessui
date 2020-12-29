@@ -20,7 +20,7 @@ export default function buildConfig(cmsContentFolder = "content") {
         .map((dirent) => dirent.name)
 
     // get all files in the root of these folders
-    // which are matching the name: /^config*(nnn).json$/
+    // which are matching the name: .config*nnn.json
     // meaning the name must start with config and end with .json
     // in between there can be additional characters
     // if there are also digits in the name, then these digits are treated as the sequence within the collections
@@ -32,11 +32,11 @@ export default function buildConfig(cmsContentFolder = "content") {
         })
             .filter((dirent) => dirent.isFile())
             .map((dirent) => dirent.name)
-            .filter((name) => name.match(/^config.*.json$/))
+            .filter((name) => name.match(/^\.config.*.json$/))
             .map((name) => {
                 const pathname = path.join(cmsContentFolder, folder, name)
                 const sequence = parseInt(
-                    name.match(/^config\D*(\d*)\.json$/)[1] || 0
+                    name.match(/^\.config\D*(\d*)\.json$/)[1] || 0
                 )
                 files.push({ sequence, pathname })
             })

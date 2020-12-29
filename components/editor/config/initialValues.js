@@ -725,6 +725,17 @@ export const initialValueHighlight = [
     },
 ]
 
+export const initialValueEmpty = [
+    {
+        children: [
+            {
+                type: options.h1.type,
+                children: [{ text: "Post Title" }],
+            },
+        ],
+    },
+]
+
 export const initialValueBasicElements = [
     {
         children: [
