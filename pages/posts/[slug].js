@@ -1,7 +1,6 @@
 import Layout from "layouts/site"
 import Image from "components/image"
 import Post from "layouts/site/post"
-import DebugData from "components/debug-data"
 
 export default function PostPage(props) {
     const { entity, aside_content } = props
@@ -19,13 +18,16 @@ export default function PostPage(props) {
             <Layout entity={entity} aside_content={aside_content}>
                 <section className="relative prose flex flex-col mx-auto pb-20">
                     {/* Cover Image */}
-                    <Image
-                        src={online_media}
-                        alt={title}
-                        layout="responsive"
-                        width={1000}
-                        height={800}
-                    />
+                    <div className="relative h-96 rounded-lg shadow-lg overflow-hidden">
+                        <Image
+                            className=""
+                            src={online_media}
+                            alt={title}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="center center"
+                        />
+                    </div>
 
                     {/* Tags */}
                     <div className="my-6">
@@ -63,8 +65,6 @@ export default function PostPage(props) {
                     <Post content={entity.editor} />
                 </section>
             </Layout>
-
-            <DebugData page="Post" data={props} name="entity" />
         </>
     )
 }

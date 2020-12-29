@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "layouts/site/layout"
 import Post from "layouts/site/post"
 
 const EditorPreview = ({
