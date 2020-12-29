@@ -1,17 +1,13 @@
 import Layout from "layouts/site"
 import Image from "components/image"
+import Post from "layouts/site/post"
 import DebugData from "components/debug-data"
-import { decode } from "js-base64"
-import serialize from "lib/serialize"
 
-export default function Post(props) {
+export default function PostPage(props) {
     const { entity, aside_content } = props
-    const html = serialize(decode(entity.editor)).join("")
 
     const {
         title = "",
-        content = "",
-        image = "",
         online_media,
         date = new Date().toLocaleDateString(),
         author = [],
@@ -21,7 +17,7 @@ export default function Post(props) {
     return (
         <>
             <Layout entity={entity} aside_content={aside_content}>
-                <div className="relative prose flex flex-col mx-auto pb-20">
+                <section className="relative prose flex flex-col mx-auto pb-20">
                     {/* Cover Image */}
                     <Image
                         src={online_media}
@@ -34,42 +30,38 @@ export default function Post(props) {
                     {/* Tags */}
                     <div className="my-6">
                         {tags &&
-                            tags.map((t) => (
+                            tags.map((tag) => (
                                 <span
-                                    className="px-2 py-1 text-indigo-800 text-xs leading-4 font-medium bg-indigo-100 rounded-full"
-                                    key={t}
+                                    className="text-xs leading-4 font-medium "
+                                    key={tag}
                                 >
-                                    {t}
+                                    <u>{tag}</u>
                                 </span>
                             ))}
                     </div>
 
                     {/* Title */}
-                    <h1>{title}</h1>
+                    <h1 className="font-serif">{title}</h1>
 
                     {/* Author and Date */}
                     <div className="pb-6">
                         {author &&
-                            author.map((a) => (
+                            author.map((auth) => (
                                 <span
-                                    className="px-2 py-1 text-gray-800 text-xs leading-4 font-medium bg-gray-100 rounded-full"
-                                    key={a}
+                                    className=" text-gray-800 text-xs leading-4 font-medium"
+                                    key={auth}
                                 >
-                                    {a}
+                                    by <b>{auth}</b>
                                 </span>
                             ))}
-                        <span className="ml-4 px-2 py-1 text-gray-800 text-xs leading-4 font-medium bg-gray-100 rounded-full">
-                            {date}
+                        <span className="ml-1 text-gray-800 text-xs   ">
+                            | on {date}
                         </span>
                     </div>
 
-                    {/* Content */}
-                    {/* {content} */}
-                    <div
-                        className="prose"
-                        dangerouslySetInnerHTML={{ __html: html }}
-                    />
-                </div>
+                    {/* The Content itself*/}
+                    <Post content={entity.editor} />
+                </section>
             </Layout>
 
             <DebugData page="Post" data={props} name="entity" />

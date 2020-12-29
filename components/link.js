@@ -3,11 +3,12 @@ import { useRouter } from "next/router"
 
 export default function LinkInternalExternal({
     href = "/",
-    label = "Menu",
+    label = "",
     index = 0,
     active = "",
     passive = "",
     className = "",
+    children,
 }) {
     try {
         const { asPath = "" } = useRouter()
@@ -17,7 +18,7 @@ export default function LinkInternalExternal({
             return (
                 <span className={className}>
                     <a key={index} href={href} className={passive}>
-                        {label}
+                        {label} {children}
                     </a>
                 </span>
             )
