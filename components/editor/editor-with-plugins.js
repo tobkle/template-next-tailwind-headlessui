@@ -31,12 +31,12 @@ import {
     CodeBlockPlugin,
     CodePlugin,
     EditablePlugins,
-    ELEMENT_IMAGE,
+    // ELEMENT_IMAGE,
     ExitBreakPlugin,
     HeadingPlugin,
     HeadingToolbar,
     HighlightPlugin,
-    ImagePlugin,
+    // ImagePlugin,
     ItalicPlugin,
     LinkPlugin,
     ListPlugin,
@@ -60,14 +60,14 @@ import {
     TodoListPlugin,
     ToolbarAlign,
     ToolbarElement,
-    ToolbarImage,
+    // ToolbarImage,
     ToolbarLink,
     ToolbarList,
     ToolbarMark,
     UnderlinePlugin,
     withAutoformat,
     withDeserializeHTML,
-    withImageUpload,
+    // withImageUpload,
     withInlineVoid,
     withLink,
     withList,
@@ -82,6 +82,14 @@ import { createEditor } from "slate"
 import { withHistory } from "slate-history"
 import { Slate, withReact } from "slate-react"
 import { autoformatRules } from "./config/autoformatRules.js"
+
+import {
+    ELEMENT_IMAGE,
+    ImagePlugin,
+    ToolbarImage,
+    withImageUpload,
+} from "./plugins/image"
+
 import {
     headingTypes,
     initialValueAutoformat,

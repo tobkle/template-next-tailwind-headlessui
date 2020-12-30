@@ -19,6 +19,8 @@
         "@styled-icons/foundation": "^10.18.0",
         "@styled-icons/material": "^10.23.0",
         "@udecode/slate-plugins": "^0.71.9",
+        "@udecode/slate-plugins-core": "^0.71.9",
+        "@uifabric/utilities": "^7.33.2",
         "classnames": "^2.2.6",
         "date-fns": "^2.16.1",
         "escape-html": "^1.0.3",

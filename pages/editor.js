@@ -4,7 +4,7 @@ import Editor from "components/editor"
 export default function EditorPage() {
     const [value, setValue] = useState(initialValue)
     return (
-        <div className="w-screen h-screen mx-auto prose">
+        <div className="w-screen h-screen mx-auto ">
             <Editor value={value} setValue={setValue} />
         </div>
     )
