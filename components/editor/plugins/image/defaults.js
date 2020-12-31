@@ -1,13 +1,13 @@
 import { ImageElement } from "./components/ImageElement"
 
-export const ELEMENT_IMAGE = "img"
+export const ELEMENT_IMAGE = "image"
 
 export const DEFAULTS_IMAGE = {
-    img: {
+    image: {
         component: ImageElement,
         type: ELEMENT_IMAGE,
         rootProps: {
-            className: "slate-img",
+            className: "slate-image",
         },
     },
 }

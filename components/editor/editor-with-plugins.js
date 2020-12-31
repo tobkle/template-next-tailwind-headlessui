@@ -3,7 +3,10 @@ import React, { useEffect, useMemo, useState } from "react"
 import { CodeAlt } from "@styled-icons/boxicons-regular/CodeAlt"
 import { CodeBlock } from "@styled-icons/boxicons-regular/CodeBlock"
 import { Subscript, Superscript } from "@styled-icons/foundation"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import {
+    DragIndicator,
     FormatAlignCenter,
     FormatAlignLeft,
     FormatAlignRight,
@@ -14,6 +17,12 @@ import {
     FormatQuote,
     FormatStrikethrough,
     FormatUnderlined,
+    BorderAll,
+    BorderClear,
+    BorderBottom,
+    BorderTop,
+    BorderLeft,
+    BorderRight,
     Image as ImageIcon,
     Link as LinkIcon,
     Looks3,
@@ -60,6 +69,14 @@ import {
     TodoListPlugin,
     ToolbarAlign,
     ToolbarElement,
+    ToolbarTable,
+    insertTable,
+    deleteTable,
+    addRow,
+    deleteRow,
+    addColumn,
+    deleteColumn,
+    getSelectableElement,
     // ToolbarImage,
     ToolbarLink,
     ToolbarList,
@@ -106,9 +123,67 @@ import {
     initialValueSoftBreak,
     initialValueTables,
     initialValueEmpty,
-    options,
+    options as defaultOptions,
     optionsResetBlockTypes,
 } from "./config/initialValues"
+
+const draggableComponentOptions = [
+    { ...defaultOptions.p, level: 1 },
+    defaultOptions.blockquote,
+    defaultOptions.todo_li,
+    defaultOptions.h1,
+    defaultOptions.h2,
+    defaultOptions.h3,
+    defaultOptions.h4,
+    defaultOptions.h5,
+    defaultOptions.h6,
+    defaultOptions.img,
+    defaultOptions.link,
+    defaultOptions.ol,
+    defaultOptions.ul,
+    defaultOptions.table,
+    defaultOptions.media_embed,
+    defaultOptions.code_block,
+].map(({ type, level, component, ...options }) => [
+    type,
+    {
+        ...options,
+        component: getSelectableElement({
+            component,
+            level,
+            dragIcon: (
+                <DragIndicator
+                    style={{
+                        width: 18,
+                        height: 18,
+                        color: "rgba(55, 53, 47, 0.3)",
+                    }}
+                />
+            ),
+            styles: {
+                blockAndGutter: {
+                    padding: "4px 0",
+                },
+                blockToolbarWrapper: {
+                    height: "1.5em",
+                },
+            },
+        }),
+        rootProps: {
+            styles: {
+                root: {
+                    margin: 0,
+                    lineHeight: "1.5",
+                },
+            },
+        },
+    },
+])
+
+const options = {
+    ...defaultOptions,
+    // ...Object.fromEntries(draggableComponentOptions),
+}
 
 const initialValue = [
     ...initialValueEmpty,
@@ -203,6 +278,21 @@ const withPlugins = [
     withSelectOnBackspace({ allow: [ELEMENT_IMAGE] }),
 ]
 
+const setNodeId = (nodes) => {
+    let id = 10000
+    nodes.forEach((node) => {
+        const children = node.children
+        if (children) {
+            children.forEach((block) => {
+                block.id = id
+                id++
+            })
+        }
+    })
+}
+
+setNodeId(initialValue)
+
 /***
  * E D I T O R -----------------------------------
  */
@@ -215,6 +305,7 @@ export default function Editor({ value, setValue }) {
     if (!value) return null
     return (
         <div className="relative flex flex-col h-screen">
+            {/* <DndProvider backend={HTML5Backend}> */}
             <Slate
                 editor={editor}
                 value={value}
@@ -231,6 +322,7 @@ export default function Editor({ value, setValue }) {
                     />
                 </div>
             </Slate>
+            {/* </DndProvider> */}
         </div>
     )
 }
@@ -305,6 +397,36 @@ const Toolbar = () => {
                 <ToolbarAlign
                     type={options.align_right.type}
                     icon={<FormatAlignRight />}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderAll />}
+                    transform={insertTable}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderClear />}
+                    transform={deleteTable}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderBottom />}
+                    transform={addRow}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderTop />}
+                    transform={deleteRow}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderLeft />}
+                    transform={addColumn}
+                />
+                <ToolbarTable
+                    {...options}
+                    icon={<BorderRight />}
+                    transform={deleteColumn}
                 />
                 <ToolbarLink {...options} icon={<LinkIcon />} />
                 <ToolbarImage {...options} icon={<ImageIcon />} />

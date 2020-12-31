@@ -2,10 +2,21 @@ import { Transforms } from "slate"
 import { setDefaults } from "@udecode/slate-plugins"
 import { DEFAULTS_IMAGE } from "../defaults"
 
-export const insertImage = (editor, url, options) => {
-    debugger
-    const { img } = setDefaults(options, DEFAULTS_IMAGE)
+export const insertImage = (
+    editor,
+    url,
+    options,
+    maxWidth = "100%",
+    maxHeight = "20em"
+) => {
+    const { image } = setDefaults(options, DEFAULTS_IMAGE)
     const text = { text: "" }
-    const image = { type: img.type, url, children: [text] }
-    Transforms.insertNodes(editor, image)
+    const newImage = {
+        type: image.type,
+        url,
+        maxWidth,
+        maxHeight,
+        children: [text],
+    }
+    Transforms.insertNodes(editor, newImage)
 }

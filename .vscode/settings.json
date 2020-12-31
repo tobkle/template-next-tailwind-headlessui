@@ -1,0 +1,8 @@
+{
+    "favorites.sortOrder": "DESC",
+    "favorites.resources": [
+        "components/media-select",
+        "cms/widget/online_media",
+        "components/editor/plugins/image/components/ToolbarImage.js"
+    ]
+}

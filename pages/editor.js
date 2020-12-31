@@ -4,9 +4,14 @@ import Editor from "components/editor"
 export default function EditorPage() {
     const [value, setValue] = useState(initialValue)
     return (
-        <div className="w-screen h-screen mx-auto ">
-            <Editor value={value} setValue={setValue} />
-        </div>
+        <>
+            <div className="w-screen h-screen mx-auto ">
+                <Editor value={value} setValue={setValue} />
+            </div>
+            <pre>
+                <code>{JSON.stringify(value, null, 2)}</code>
+            </pre>
+        </>
     )
 }
 

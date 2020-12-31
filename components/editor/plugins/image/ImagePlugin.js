@@ -4,11 +4,10 @@ import { deserializeImage } from "./deserializeImage"
 import { renderElementImage } from "./renderElementImage"
 
 export const ImagePlugin = (options) => {
-    const { img } = setDefaults(options, DEFAULTS_IMAGE)
-    debugger
+    const { image } = setDefaults(options, DEFAULTS_IMAGE)
     return {
         renderElement: renderElementImage(options),
         deserialize: deserializeImage(options),
-        voidTypes: [img.type],
+        voidTypes: [image.type],
     }
 }

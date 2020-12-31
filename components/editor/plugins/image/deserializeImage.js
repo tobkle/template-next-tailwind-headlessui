@@ -3,17 +3,18 @@ import { setDefaults } from "@udecode/slate-plugins"
 import { DEFAULTS_IMAGE } from "./defaults"
 
 export const deserializeImage = (options) => {
-    const { img } = setDefaults(options, DEFAULTS_IMAGE)
-debugger
+    const { image } = setDefaults(options, DEFAULTS_IMAGE)
     return {
         element: getNodeDeserializer({
-            type: img.type,
+            type: image.type,
             node: (el) => ({
-                type: img.type,
+                type: image.type,
+                maxWidth: "100%",
+                maxHeight: "40em",
                 url: el.getAttribute("src"),
             }),
             rules: [{ nodeNames: "IMG" }],
-            ...options?.img?.deserialize,
+            ...options?.image?.deserialize,
         }),
     }
 }

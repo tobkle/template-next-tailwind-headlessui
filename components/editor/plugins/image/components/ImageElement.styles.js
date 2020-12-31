@@ -1,11 +1,11 @@
 export const getImageElementStyles = ({ className, focused, selected }) => {
     return {
         root: [{}, className],
-        img: {
+        image: {
             display: "block",
             maxWidth: "100%",
             maxHeight: "40em",
-            boxShadow: focused && selected ? "0 0 4px 3px #B4D5FF" : "none",
+            boxShadow: focused && selected ? "0 0 4px 3px #FF0000" : "none",
         },
     }
 }

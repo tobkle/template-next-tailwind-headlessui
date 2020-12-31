@@ -5,7 +5,6 @@ export const withImageUpload = (options) => (editor) => {
     const { insertData } = editor
 
     editor.insertData = (data) => {
-        debugger
         const text = data.getData("text/plain")
         const { files } = data
 
